@@ -1,0 +1,354 @@
+Processed symbol: 10000LADYSUSDT
+Processed symbol: 10000NFTUSDT
+Processed symbol: 10000SATSUSDT
+Processed symbol: 10000STARLUSDT
+Processed symbol: 10000WENUSDT
+Processed symbol: 1000BONKUSDT
+Processed symbol: 1000BTTUSDT
+Processed symbol: 1000FLOKIUSDT
+Processed symbol: 1000LUNCUSDT
+Processed symbol: 1000PEPEUSDT
+Processed symbol: 1000RATSUSDT
+Processed symbol: 1000XECUSDT
+Processed symbol: 1CATUSDT
+Processed symbol: 1INCHUSDT
+Processed symbol: AAVEUSDT
+Processed symbol: ACEUSDT
+Processed symbol: ACHUSDT
+Processed symbol: ADAUSDT
+Processed symbol: AERGOUSDT
+Processed symbol: AGIUSDT
+Processed symbol: AGIXUSDT
+Processed symbol: AGLDUSDT
+Processed symbol: AIUSDT
+Processed symbol: AKROUSDT
+Processed symbol: ALGOUSDT
+Processed symbol: ALICEUSDT
+Processed symbol: ALPACAUSDT
+Processed symbol: ALPHAUSDT
+Processed symbol: ALTUSDT
+Processed symbol: AMBUSDT
+Processed symbol: ANKRUSDT
+Processed symbol: ANTUSDT
+Processed symbol: APEUSDT
+Processed symbol: API3USDT
+Processed symbol: APTUSDT
+Processed symbol: ARBUSDT
+Processed symbol: ARKMUSDT
+Processed symbol: ARKUSDT
+Processed symbol: ARPAUSDT
+Processed symbol: ARUSDT
+Processed symbol: ASTRUSDT
+Processed symbol: ATAUSDT
+Processed symbol: ATOMUSDT
+Processed symbol: AUCTIONUSDT
+Processed symbol: AUDIOUSDT
+Processed symbol: AVAXUSDT
+Processed symbol: AXLUSDT
+Processed symbol: AXSUSDT
+Processed symbol: BADGERUSDT
+Processed symbol: BAKEUSDT
+Processed symbol: BALUSDT
+Processed symbol: BANDUSDT
+Processed symbol: BATUSDT
+Processed symbol: BCHUSDT
+Processed symbol: BEAMUSDT
+Processed symbol: BELUSDT
+Processed symbol: BICOUSDT
+Processed symbol: BIGTIMEUSDT
+Processed symbol: BLURUSDT
+Processed symbol: BLZUSDT
+Processed symbol: BNBPERP
+Processed symbol: BNBUSDT
+Processed symbol: BNTUSDT
+Processed symbol: BNXUSDT
+Processed symbol: BOBAUSDT
+Processed symbol: BONDUSDT
+Processed symbol: BSVUSDT
+Processed symbol: BSWUSDT
+C:\Users\paul208\AppData\Local\Temp\ipykernel_37860\3318727153.py:36: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+  total_profit = (1 + pd.Series(profits)).prod() - 1
+C:\Users\paul208\AppData\Local\Temp\ipykernel_37860\3318727153.py:43: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+  total_profit = (1 + pd.Series(profits)).prod() - 1
+Processed symbol: BTC-01MAR24
+C:\Users\paul208\AppData\Local\Temp\ipykernel_37860\3318727153.py:36: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+  total_profit = (1 + pd.Series(profits)).prod() - 1
+C:\Users\paul208\AppData\Local\Temp\ipykernel_37860\3318727153.py:43: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+  total_profit = (1 + pd.Series(profits)).prod() - 1
+Processed symbol: BTC-08MAR24
+C:\Users\paul208\AppData\Local\Temp\ipykernel_37860\3318727153.py:36: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+  total_profit = (1 + pd.Series(profits)).prod() - 1
+C:\Users\paul208\AppData\Local\Temp\ipykernel_37860\3318727153.py:43: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+  total_profit = (1 + pd.Series(profits)).prod() - 1
+Processed symbol: BTC-23FEB24
+C:\Users\paul208\AppData\Local\Temp\ipykernel_37860\3318727153.py:36: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+  total_profit = (1 + pd.Series(profits)).prod() - 1
+C:\Users\paul208\AppData\Local\Temp\ipykernel_37860\3318727153.py:43: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+  total_profit = (1 + pd.Series(profits)).prod() - 1
+Processed symbol: BTC-26APR24
+C:\Users\paul208\AppData\Local\Temp\ipykernel_37860\3318727153.py:36: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+  total_profit = (1 + pd.Series(profits)).prod() - 1
+C:\Users\paul208\AppData\Local\Temp\ipykernel_37860\3318727153.py:43: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+  total_profit = (1 + pd.Series(profits)).prod() - 1
+Processed symbol: BTC-27SEP24
+Processed symbol: BTC-28JUN24
+Processed symbol: BTC-29MAR24
+Processed symbol: BTCPERP
+Processed symbol: BTCUSDT
+Processed symbol: C98USDT
+Processed symbol: CAKEUSDT
+Processed symbol: CEEKUSDT
+Processed symbol: CELOUSDT
+Processed symbol: CELRUSDT
+Processed symbol: CETUSUSDT
+Error processing symbol CFXUSDT: ("Connection broken: InvalidChunkLength(got length b'', 0 bytes read)", InvalidChunkLength(got length b'', 0 bytes read))
+Error processing symbol CHRUSDT: HTTPSConnectionPool(host='api.bybit.com', port=443): Max retries exceeded with url: /v5/market/kline?interval=60&limit=1000&product_type=linear&start=1577836800000&symbol=CHRUSDT (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001E4AF5BBD60>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
+Error processing symbol CHZUSDT: HTTPSConnectionPool(host='api.bybit.com', port=443): Max retries exceeded with url: /v5/market/kline?interval=60&limit=1000&product_type=linear&start=1577836800000&symbol=CHZUSDT (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001E4AF5BBEE0>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
+Error processing symbol CKBUSDT: HTTPSConnectionPool(host='api.bybit.com', port=443): Max retries exceeded with url: /v5/market/kline?interval=60&limit=1000&product_type=linear&start=1577836800000&symbol=CKBUSDT (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001E4AF5B88B0>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
+Error processing symbol COMBOUSDT: HTTPSConnectionPool(host='api.bybit.com', port=443): Max retries exceeded with url: /v5/market/kline?interval=60&limit=1000&product_type=linear&start=1577836800000&symbol=COMBOUSDT (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001E4AF5BB850>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
+Error processing symbol COMPUSDT: HTTPSConnectionPool(host='api.bybit.com', port=443): Max retries exceeded with url: /v5/market/kline?interval=60&limit=1000&product_type=linear&start=1577836800000&symbol=COMPUSDT (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001E4AF5BBD30>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
+Error processing symbol COREUSDT: HTTPSConnectionPool(host='api.bybit.com', port=443): Max retries exceeded with url: /v5/market/kline?interval=60&limit=1000&product_type=linear&start=1577836800000&symbol=COREUSDT (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001E4AF5B82B0>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
+Error processing symbol COTIUSDT: HTTPSConnectionPool(host='api.bybit.com', port=443): Max retries exceeded with url: /v5/market/kline?interval=60&limit=1000&product_type=linear&start=1577836800000&symbol=COTIUSDT (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001E4AF5B8790>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
+Error processing symbol CROUSDT: HTTPSConnectionPool(host='api.bybit.com', port=443): Max retries exceeded with url: /v5/market/kline?interval=60&limit=1000&product_type=linear&start=1577836800000&symbol=CROUSDT (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001E4AF5B9210>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
+Error processing symbol CRVUSDT: HTTPSConnectionPool(host='api.bybit.com', port=443): Max retries exceeded with url: /v5/market/kline?interval=60&limit=1000&product_type=linear&start=1577836800000&symbol=CRVUSDT (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001E4AF5BB700>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
+Error processing symbol CTCUSDT: HTTPSConnectionPool(host='api.bybit.com', port=443): Max retries exceeded with url: /v5/market/kline?interval=60&limit=1000&product_type=linear&start=1577836800000&symbol=CTCUSDT (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001E4AF5B80A0>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
+Error processing symbol CTKUSDT: HTTPSConnectionPool(host='api.bybit.com', port=443): Max retries exceeded with url: /v5/market/kline?interval=60&limit=1000&product_type=linear&start=1577836800000&symbol=CTKUSDT (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001E4AF5BAB00>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
+Error processing symbol CTSIUSDT: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error processing symbol CVCUSDT: HTTPSConnectionPool(host='api.bybit.com', port=443): Max retries exceeded with url: /v5/market/kline?interval=60&limit=1000&product_type=linear&start=1577836800000&symbol=CVCUSDT (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001E4AF49C940>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
+Error processing symbol CVXUSDT: HTTPSConnectionPool(host='api.bybit.com', port=443): Max retries exceeded with url: /v5/market/kline?interval=60&limit=1000&product_type=linear&start=1577836800000&symbol=CVXUSDT (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001E4AF49C9D0>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
+Error processing symbol CYBERUSDT: HTTPSConnectionPool(host='api.bybit.com', port=443): Max retries exceeded with url: /v5/market/kline?interval=60&limit=1000&product_type=linear&start=1577836800000&symbol=CYBERUSDT (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001E4AF49CA60>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
+Error processing symbol DARUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol DASHUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol DATAUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol DENTUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol DGBUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol DODOUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol DOGEUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol DOTUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol DUSKUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol DYDXUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol DYMUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol EDUUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol EGLDUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol ENJUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol ENSUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol EOSUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol ETCPERP: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol ETCUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol ETH-01MAR24: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol ETH-08MAR24: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol ETH-23FEB24: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol ETH-26APR24: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol ETH-27SEP24: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol ETH-28JUN24: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol ETH-29MAR24: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol ETHPERP: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol ETHUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol ETHWUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol FETUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol FILUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol FITFIUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol FLMUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol FLOWUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol FLRUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol FORTHUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol FRONTUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol FTMUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol FUNUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol FXSUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol GALAUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol GALUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol GASUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol GFTUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol GLMRUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol GLMUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol GMTUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol GMXUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol GODSUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol GPTUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol GRTUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol GTCUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol HBARUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol HFTUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol HIFIUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol HIGHUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol HNTUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol HOOKUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol HOTUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol ICPUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol ICXUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol IDEXUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol IDUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol ILVUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol IMXUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol INJUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol IOSTUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol IOTAUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol IOTXUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol JASMYUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol JOEUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol JSTUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol JTOUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol JUPUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol KASUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol KAVAUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol KDAUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol KEYUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol KLAYUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol KNCUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol KSMUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol LDOUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol LEVERUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol LINAUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol LINKUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol LITUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol LOOKSUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol LOOMUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol LPTUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol LQTYUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol LRCUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol LSKUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol LTCUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol LUNA2USDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol MAGICUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol MANAUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol MANTAUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol MASKUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol MATICPERP: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol MATICUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol MAVIAUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol MAVUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol MBLUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol MBOXUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol MDTUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol MEMEUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol METISUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol MINAUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol MKRUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol MNTUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol MOVRUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol MTLUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol MULTIUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol MYRIAUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol MYROUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol NEARUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol NEOUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol NFPUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol NKNUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol NMRUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol NTRNUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol OCEANUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol OGNUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol OGUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol OMGUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol ONDOUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol ONEUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol ONGUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol ONTUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol OPPERP: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol OPUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol ORBSUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol ORDIUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol OXTUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol PAXGUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol PENDLEUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol PEOPLEUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol PERPUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol PHBUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol POLYXUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol POWRUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol PROMUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol PYTHUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol QIUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol QNTUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol QTUMUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol RADUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol RAREUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol RDNTUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol REEFUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol RENUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol REQUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol RIFUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol RLCUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol RNDRUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol ROSEUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol RPLUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol RSRUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol RSS3USDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol RUNEUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol RVNUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol SANDUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol SCRTUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol SCUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol SEIUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol SFPUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol SHIB1000USDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol SILLYUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol SKLUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol SLPUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol SNTUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol SNXUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol SOLPERP: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol SOLUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol SPELLUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol SSVUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol STEEMUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol STGUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol STMXUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol STORJUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol STPTUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol STRAXUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol STXUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol SUIUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol SUNUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol SUPERUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol SUSHIUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol SWEATUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol SXPUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol TAOUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol THETAUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol TIAUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol TLMUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol TOKENUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol TOMIUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol TONUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol TRBUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol TRUUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol TRXUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol TUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol TWTUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol UMAUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol UNFIUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol UNIUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol USDCUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol USTCUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol VETUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol VGXUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol VRAUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol VTHOUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol WAVESUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol WAXPUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol WIFUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol WLDUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol WOOUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol XAIUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol XCNUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol XEMUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol XLMUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol XMRUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol XNOUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol XRDUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol XRPPERP: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol XRPUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol XTZUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol XVGUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol XVSUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol YFIIUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol YFIUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol YGGUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol ZECUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol ZENUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol ZETAUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol ZILUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol ZKFUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Error processing symbol ZRXUSDT: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))

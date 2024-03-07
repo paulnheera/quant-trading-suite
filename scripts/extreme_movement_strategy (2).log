@@ -1,0 +1,530 @@
+Account USDT Balance: 52.02646267
+2024-02-12 19:00:30.639638+00:00 |Connected to websocket...
+2024-02-12 19:00:30.640195+00:00 |Subcribed to klines stream...
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707764400000, 'end': 1707767999999, 'interval': '60', 'open': '49762.2', 'close': '49556.9', 'high': '49991.2', 'low': '49528', 'volume': '5650.261', 'turnover': '281173711.563', 'confirm': True, 'timestamp': 1707768000906}, {'start': 1707768000000, 'end': 1707771599999, 'interval': '60', 'open': '49556.9', 'close': '49557.2', 'high': '49557.2', 'low': '49556.9', 'volume': '0.178', 'turnover': '8821.1315', 'confirm': False, 'timestamp': 1707768000906}], 'ts': 1707768000906, 'type': 'snapshot'}
+
+2024-02-12 20:00:00.906000 | TRADE SIGNAL: {'asset': 'ZKFUSDT', '1hPct': 0.07371007371007376, 'action': 'Long'}
+
+Asking price is: 0.00874
+
+Calculated quantity: 5950.0
+
+Take Profit=0.00918, Stop Loss=0.0083
+
+
+Failed to place order!
+
+ERROR: Format specifier missing precision
+
+2024-02-12 20:00:00.906000 | TRADE SIGNAL: {'asset': 'MAVIAUSDT', '1hPct': -0.07036144578313264, 'action': 'Short'}
+
+Asking price is: 7.684
+
+Calculated quantity: 6.7
+
+Take Profit=7.3, Stop Loss=8.068
+
+2024-02-12 20:00:03.685867+00:00 | Purchased 6.7 of MAVIAUSDT
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707768000000, 'end': 1707771599999, 'interval': '60', 'open': '49556.9', 'close': '50180.8', 'high': '50269.2', 'low': '49556.9', 'volume': '7801.542', 'turnover': '389977839.2843', 'confirm': True, 'timestamp': 1707771600905}, {'start': 1707771600000, 'end': 1707775199999, 'interval': '60', 'open': '50180.8', 'close': '50132.1', 'high': '50180.8', 'low': '50094.3', 'volume': '281.002', 'turnover': '14087735.7697', 'confirm': False, 'timestamp': 1707771600905}], 'ts': 1707771600905, 'type': 'snapshot'}
+
+No signal!
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707771600000, 'end': 1707775199999, 'interval': '60', 'open': '50180.8', 'close': '49843.5', 'high': '50299', 'low': '49828.5', 'volume': '6339.975', 'turnover': '317591525.2394', 'confirm': True, 'timestamp': 1707775200906}, {'start': 1707775200000, 'end': 1707778799999, 'interval': '60', 'open': '49843.5', 'close': '49860.2', 'high': '49860.2', 'low': '49843.5', 'volume': '87.642', 'turnover': '4368920.0246', 'confirm': False, 'timestamp': 1707775200906}], 'ts': 1707775200906, 'type': 'snapshot'}
+
+2024-02-12 22:00:00.906000 | TRADE SIGNAL: {'asset': 'MAVIAUSDT', '1hPct': -0.06996291718170577, 'action': 'Short'}
+
+Asking price is: 7.531
+
+Calculated quantity: 6.5
+
+Take Profit=7.154, Stop Loss=7.908
+
+
+Failed to place order!
+
+ERROR: OrderLinkedID is duplicate (ErrCode: 110072) (ErrTime: 22:00:01).
+Request → POST https://api.bybit.com/v5/order/create: {"category": "linear", "symbol": "MAVIAUSDT", "side": "Sell", "orderType": "Market", "qty": "6.5", "price": "15600", "takeProfit": "7.154", "stopLoss": "7.908", "timeInForce": "PostOnly", "orderLinkId": "MAVIAUSDT - 2024-02-12", "isLeverage": 0, "orderFilter": "Order"}.
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707775200000, 'end': 1707778799999, 'interval': '60', 'open': '49843.5', 'close': '50064.3', 'high': '50108.1', 'low': '49834.5', 'volume': '3329.675', 'turnover': '166491407.6516', 'confirm': True, 'timestamp': 1707778800905}, {'start': 1707778800000, 'end': 1707782399999, 'interval': '60', 'open': '50064.3', 'close': '50066', 'high': '50066', 'low': '50064.3', 'volume': '1.332', 'turnover': '66686.5221', 'confirm': False, 'timestamp': 1707778800905}], 'ts': 1707778800905, 'type': 'snapshot'}
+
+2024-02-12 23:00:00.905000 | TRADE SIGNAL: {'asset': '10000WENUSDT', '1hPct': 0.08032248432367872, 'action': 'Long'}
+
+Asking price is: 0.7243
+
+Calculated quantity: 68.0
+
+Take Profit=0.7605000000000001, Stop Loss=0.6881
+
+
+Failed to place order!
+
+ERROR: OrderLinkedID is duplicate (ErrCode: 110072) (ErrTime: 23:00:02).
+Request → POST https://api.bybit.com/v5/order/create: {"category": "linear", "symbol": "10000WENUSDT", "side": "Buy", "orderType": "Market", "qty": "68", "price": "15600", "takeProfit": "0.7605", "stopLoss": "0.6881", "timeInForce": "PostOnly", "orderLinkId": "10000WENUSDT - 2024-02-12", "isLeverage": 0, "orderFilter": "Order"}.
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707778800000, 'end': 1707782399999, 'interval': '60', 'open': '50064.3', 'close': '49960.9', 'high': '50089', 'low': '49905', 'volume': '2292.019', 'turnover': '114583425.0795', 'confirm': True, 'timestamp': 1707782400906}, {'start': 1707782400000, 'end': 1707785999999, 'interval': '60', 'open': '49960.9', 'close': '49960.9', 'high': '49960.9', 'low': '49960.9', 'volume': '0', 'turnover': '0', 'confirm': False, 'timestamp': 1707782400906}], 'ts': 1707782400906, 'type': 'snapshot'}
+
+2024-02-13 00:00:00.906000 | TRADE SIGNAL: {'asset': 'MAVIAUSDT', '1hPct': 0.07762916338840808, 'action': 'Long'}
+
+Asking price is: 8.23
+
+Calculated quantity: 5.9
+
+Take Profit=8.642, Stop Loss=7.8180000000000005
+
+2024-02-13 00:00:02.556606+00:00 | Purchased 5.9 of MAVIAUSDT
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707782400000, 'end': 1707785999999, 'interval': '60', 'open': '49960.9', 'close': '50134.9', 'high': '50199.3', 'low': '49940.7', 'volume': '3602.889', 'turnover': '180407659.1431', 'confirm': True, 'timestamp': 1707786000905}, {'start': 1707786000000, 'end': 1707789599999, 'interval': '60', 'open': '50134.9', 'close': '50135', 'high': '50135', 'low': '50134.9', 'volume': '1.074', 'turnover': '53844.99', 'confirm': False, 'timestamp': 1707786000905}], 'ts': 1707786000905, 'type': 'snapshot'}
+
+No signal!
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707786000000, 'end': 1707789599999, 'interval': '60', 'open': '50134.9', 'close': '50173.2', 'high': '50430.5', 'low': '50010', 'volume': '5526.194', 'turnover': '277334897.1384', 'confirm': True, 'timestamp': 1707789600905}, {'start': 1707789600000, 'end': 1707793199999, 'interval': '60', 'open': '50173.2', 'close': '50173.2', 'high': '50173.2', 'low': '50173.2', 'volume': '0', 'turnover': '0', 'confirm': False, 'timestamp': 1707789600905}], 'ts': 1707789600905, 'type': 'snapshot'}
+
+2024-02-13 02:00:00.905000 | TRADE SIGNAL: {'asset': '10000WENUSDT', '1hPct': 0.054560150882392744, 'action': 'Long'}
+
+Asking price is: 0.7828
+
+Calculated quantity: 63.0
+
+Take Profit=0.8219000000000001, Stop Loss=0.7437
+
+2024-02-13 02:00:02.722707+00:00 | Purchased 63.0 of 10000WENUSDT
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707789600000, 'end': 1707793199999, 'interval': '60', 'open': '50173.2', 'close': '49972.2', 'high': '50184.7', 'low': '49863', 'volume': '3656.976', 'turnover': '182944408.9392', 'confirm': True, 'timestamp': 1707793200905}, {'start': 1707793200000, 'end': 1707796799999, 'interval': '60', 'open': '49972.2', 'close': '49972.1', 'high': '49972.2', 'low': '49972.1', 'volume': '0.021', 'turnover': '1049.4141', 'confirm': False, 'timestamp': 1707793200905}], 'ts': 1707793200905, 'type': 'snapshot'}
+
+2024-02-13 03:00:00.905000 | TRADE SIGNAL: {'asset': 'MYROUSDT', '1hPct': 0.05790297339593109, 'action': 'Long'}
+
+Asking price is: 0.0676
+
+Calculated quantity: 729.0
+
+Take Profit=0.07100000000000001, Stop Loss=0.06420000000000001
+
+2024-02-13 03:00:02.044276+00:00 | Purchased 729.0 of MYROUSDT
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707793200000, 'end': 1707796799999, 'interval': '60', 'open': '49972.2', 'close': '49819', 'high': '49984.5', 'low': '49762', 'volume': '3342.395', 'turnover': '166649468.2504', 'confirm': True, 'timestamp': 1707796800904}, {'start': 1707796800000, 'end': 1707800399999, 'interval': '60', 'open': '49819', 'close': '49819.5', 'high': '49819.5', 'low': '49819', 'volume': '0.026', 'turnover': '1295.295', 'confirm': False, 'timestamp': 1707796800904}], 'ts': 1707796800904, 'type': 'snapshot'}
+
+2024-02-13 04:00:00.904000 | TRADE SIGNAL: {'asset': 'SUPERUSDT', '1hPct': 0.08315075639019298, 'action': 'Long'}
+
+Asking price is: 1.0384
+
+Calculated quantity: 40.0
+
+Take Profit=1.0903, Stop Loss=0.9865
+
+2024-02-13 04:00:01.926287+00:00 | Purchased 40.0 of SUPERUSDT
+
+2024-02-13 04:00:00.904000 | TRADE SIGNAL: {'asset': '10000WENUSDT', '1hPct': -0.05346635968278335, 'action': 'Short'}
+
+Asking price is: 0.7396
+
+Calculated quantity: 56.0
+
+Take Profit=0.7026, Stop Loss=0.7766000000000001
+
+
+Failed to place order!
+
+ERROR: OrderLinkedID is duplicate (ErrCode: 110072) (ErrTime: 04:00:03).
+Request → POST https://api.bybit.com/v5/order/create: {"category": "linear", "symbol": "10000WENUSDT", "side": "Sell", "orderType": "Market", "qty": "56", "price": "15600", "takeProfit": "0.7026", "stopLoss": "0.7766", "timeInForce": "PostOnly", "orderLinkId": "10000WENUSDT - 2024-02-13", "isLeverage": 0, "orderFilter": "Order"}.
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707796800000, 'end': 1707800399999, 'interval': '60', 'open': '49819', 'close': '49934', 'high': '49999', 'low': '49816.1', 'volume': '2272.403', 'turnover': '113392161.0835', 'confirm': True, 'timestamp': 1707800400905}, {'start': 1707800400000, 'end': 1707803999999, 'interval': '60', 'open': '49934', 'close': '49934', 'high': '49934', 'low': '49934', 'volume': '0', 'turnover': '0', 'confirm': False, 'timestamp': 1707800400905}], 'ts': 1707800400905, 'type': 'snapshot'}
+
+2024-02-13 05:00:00.905000 | TRADE SIGNAL: {'asset': '10000WENUSDT', '1hPct': 0.06544077879935095, 'action': 'Long'}
+
+Asking price is: 0.788
+
+Calculated quantity: 53.0
+
+Take Profit=0.8274, Stop Loss=0.7486
+
+
+Failed to place order!
+
+ERROR: OrderLinkedID is duplicate (ErrCode: 110072) (ErrTime: 05:00:02).
+Request → POST https://api.bybit.com/v5/order/create: {"category": "linear", "symbol": "10000WENUSDT", "side": "Buy", "orderType": "Market", "qty": "53", "price": "15600", "takeProfit": "0.8274", "stopLoss": "0.7486", "timeInForce": "PostOnly", "orderLinkId": "10000WENUSDT - 2024-02-13", "isLeverage": 0, "orderFilter": "Order"}.
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707800400000, 'end': 1707803999999, 'interval': '60', 'open': '49934', 'close': '50086.3', 'high': '50089.2', 'low': '49835', 'volume': '2150.279', 'turnover': '107441472.4662', 'confirm': True, 'timestamp': 1707804000908}, {'start': 1707804000000, 'end': 1707807599999, 'interval': '60', 'open': '50086.3', 'close': '50086.3', 'high': '50086.3', 'low': '50086.3', 'volume': '0', 'turnover': '0', 'confirm': False, 'timestamp': 1707804000908}], 'ts': 1707804000908, 'type': 'snapshot'}
+
+2024-02-13 06:00:00.908000 | TRADE SIGNAL: {'asset': 'MYROUSDT', '1hPct': 0.053291536050156685, 'action': 'Long'}
+
+Asking price is: 0.0673
+
+Calculated quantity: 621.0
+
+Take Profit=0.0707, Stop Loss=0.0639
+
+
+Failed to place order!
+
+ERROR: OrderLinkedID is duplicate (ErrCode: 110072) (ErrTime: 06:00:03).
+Request → POST https://api.bybit.com/v5/order/create: {"category": "linear", "symbol": "MYROUSDT", "side": "Buy", "orderType": "Market", "qty": "621", "price": "15600", "takeProfit": "0.0707", "stopLoss": "0.0639", "timeInForce": "PostOnly", "orderLinkId": "MYROUSDT - 2024-02-13", "isLeverage": 0, "orderFilter": "Order"}.
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707804000000, 'end': 1707807599999, 'interval': '60', 'open': '50086.3', 'close': '50030', 'high': '50123', 'low': '49982', 'volume': '1962.122', 'turnover': '98207416.419', 'confirm': True, 'timestamp': 1707807600905}, {'start': 1707807600000, 'end': 1707811199999, 'interval': '60', 'open': '50030', 'close': '50030', 'high': '50030', 'low': '50030', 'volume': '0.02', 'turnover': '1000.6', 'confirm': False, 'timestamp': 1707807600905}], 'ts': 1707807600905, 'type': 'snapshot'}
+
+2024-02-13 07:00:00.905000 | TRADE SIGNAL: {'asset': 'CKBUSDT', '1hPct': 0.05689707214005435, 'action': 'Long'}
+
+Asking price is: 0.007
+
+Calculated quantity: 5970.0
+
+Take Profit=0.00735, Stop Loss=0.00665
+
+
+Failed to place order!
+
+ERROR: Format specifier missing precision
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707807600000, 'end': 1707811199999, 'interval': '60', 'open': '50030', 'close': '50031.2', 'high': '50168.6', 'low': '49920.7', 'volume': '2575.923', 'turnover': '128902839.3324', 'confirm': True, 'timestamp': 1707811200906}, {'start': 1707811200000, 'end': 1707814799999, 'interval': '60', 'open': '50031.2', 'close': '50031.2', 'high': '50031.3', 'low': '50031.2', 'volume': '0.977', 'turnover': '48880.5612', 'confirm': False, 'timestamp': 1707811200906}], 'ts': 1707811200906, 'type': 'snapshot'}
+
+2024-02-13 08:00:00.906000 | TRADE SIGNAL: {'asset': 'COTIUSDT', '1hPct': 0.09719273413540952, 'action': 'Long'}
+
+Asking price is: 0.09298
+
+Calculated quantity: 449.0
+
+Take Profit=0.09763000000000001, Stop Loss=0.08833
+
+2024-02-13 08:00:02.415073+00:00 | Purchased 449.0 of COTIUSDT
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707811200000, 'end': 1707814799999, 'interval': '60', 'open': '50031.2', 'close': '50158.1', 'high': '50197.2', 'low': '50002.4', 'volume': '2693.966', 'turnover': '135038743.3681', 'confirm': True, 'timestamp': 1707814800905}, {'start': 1707814800000, 'end': 1707818399999, 'interval': '60', 'open': '50158.1', 'close': '50158.1', 'high': '50158.2', 'low': '50158.1', 'volume': '0.044', 'turnover': '2206.9565', 'confirm': False, 'timestamp': 1707814800905}], 'ts': 1707814800905, 'type': 'snapshot'}
+
+2024-02-13 09:00:00.905000 | TRADE SIGNAL: {'asset': 'ONDOUSDT', '1hPct': 0.056431535269709565, 'action': 'Long'}
+
+Asking price is: 0.2545
+
+Calculated quantity: 164.0
+
+Take Profit=0.2672, Stop Loss=0.24180000000000001
+
+2024-02-13 09:00:02.726672+00:00 | Purchased 164.0 of ONDOUSDT
+
+2024-02-13 09:00:00.905000 | TRADE SIGNAL: {'asset': 'ZKFUSDT', '1hPct': -0.050473186119873725, 'action': 'Short'}
+
+Asking price is: 0.00906
+
+Calculated quantity: 4610.0
+
+Take Profit=0.008610000000000001, Stop Loss=0.009510000000000001
+
+
+Failed to place order!
+
+ERROR: Format specifier missing precision
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707814800000, 'end': 1707818399999, 'interval': '60', 'open': '50158.1', 'close': '50245.1', 'high': '50296', 'low': '50055', 'volume': '3479.79', 'turnover': '174521993.8602', 'confirm': True, 'timestamp': 1707818400905}, {'start': 1707818400000, 'end': 1707821999999, 'interval': '60', 'open': '50245.1', 'close': '50235', 'high': '50245.1', 'low': '50235', 'volume': '3.502', 'turnover': '175957.318', 'confirm': False, 'timestamp': 1707818400905}], 'ts': 1707818400905, 'type': 'snapshot'}
+
+2024-02-13 10:00:00.905000 | TRADE SIGNAL: {'asset': 'AIUSDT', '1hPct': 0.07988124827395748, 'action': 'Long'}
+
+Asking price is: 1.5662
+
+Calculated quantity: 25.3
+
+Take Profit=1.6445, Stop Loss=1.4879
+
+2024-02-13 10:00:02.228260+00:00 | Purchased 25.3 of AIUSDT
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707818400000, 'end': 1707821999999, 'interval': '60', 'open': '50245.1', 'close': '49875.1', 'high': '50272.3', 'low': '49851', 'volume': '6490.492', 'turnover': '324584892.8679', 'confirm': True, 'timestamp': 1707822000905}, {'start': 1707822000000, 'end': 1707825599999, 'interval': '60', 'open': '49875.1', 'close': '49850', 'high': '49875.1', 'low': '49850', 'volume': '73.401', 'turnover': '3659931.7071', 'confirm': False, 'timestamp': 1707822000905}], 'ts': 1707822000905, 'type': 'snapshot'}
+
+No signal!
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707822000000, 'end': 1707825599999, 'interval': '60', 'open': '49875.1', 'close': '49998.7', 'high': '50040', 'low': '49660', 'volume': '7104.377', 'turnover': '354103679.9695', 'confirm': True, 'timestamp': 1707825600906}, {'start': 1707825600000, 'end': 1707829199999, 'interval': '60', 'open': '49998.7', 'close': '49998.7', 'high': '49998.7', 'low': '49998.6', 'volume': '0.135', 'turnover': '6749.8163', 'confirm': False, 'timestamp': 1707825600906}], 'ts': 1707825600906, 'type': 'snapshot'}
+
+2024-02-13 12:00:00.906000 | TRADE SIGNAL: {'asset': 'AIUSDT', '1hPct': 0.057211507240729764, 'action': 'Long'}
+
+Asking price is: 1.628
+
+Calculated quantity: 24.3
+
+Take Profit=1.7094, Stop Loss=1.5466
+
+
+Failed to place order!
+
+ERROR: OrderLinkedID is duplicate (ErrCode: 110072) (ErrTime: 12:00:01).
+Request → POST https://api.bybit.com/v5/order/create: {"category": "linear", "symbol": "AIUSDT", "side": "Buy", "orderType": "Market", "qty": "24.3", "price": "15600", "takeProfit": "1.7094", "stopLoss": "1.5466", "timeInForce": "PostOnly", "orderLinkId": "AIUSDT - 2024-02-13", "isLeverage": 0, "orderFilter": "Order"}.
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707825600000, 'end': 1707829199999, 'interval': '60', 'open': '49998.7', 'close': '49874', 'high': '50004.7', 'low': '49804.6', 'volume': '2618.355', 'turnover': '130664549.85', 'confirm': True, 'timestamp': 1707829200905}, {'start': 1707829200000, 'end': 1707832799999, 'interval': '60', 'open': '49874', 'close': '49874', 'high': '49874', 'low': '49874', 'volume': '0.007', 'turnover': '349.118', 'confirm': False, 'timestamp': 1707829200905}], 'ts': 1707829200905, 'type': 'snapshot'}
+
+No signal!
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707829200000, 'end': 1707832799999, 'interval': '60', 'open': '49874', 'close': '49553.2', 'high': '49948', 'low': '49180.2', 'volume': '19788.973', 'turnover': '981393820.7159', 'confirm': True, 'timestamp': 1707832800905}, {'start': 1707832800000, 'end': 1707836399999, 'interval': '60', 'open': '49553.2', 'close': '49550', 'high': '49553.2', 'low': '49550', 'volume': '0.284', 'turnover': '14072.7604', 'confirm': False, 'timestamp': 1707832800905}], 'ts': 1707832800905, 'type': 'snapshot'}
+
+2024-02-13 14:00:00.905000 | TRADE SIGNAL: {'asset': 'CKBUSDT', '1hPct': 0.09878795777401272, 'action': 'Long'}
+
+Asking price is: 0.008433
+
+Calculated quantity: 4920.0
+
+Take Profit=0.008855, Stop Loss=0.008010999999999999
+
+
+Failed to place order!
+
+ERROR: Format specifier missing precision
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707832800000, 'end': 1707836399999, 'interval': '60', 'open': '49553.2', 'close': '48706.6', 'high': '49681', 'low': '48362.5', 'volume': '36828.605', 'turnover': '1804424590.2461', 'confirm': True, 'timestamp': 1707836400906}, {'start': 1707836400000, 'end': 1707839999999, 'interval': '60', 'open': '48706.6', 'close': '48712.8', 'high': '48712.8', 'low': '48706.6', 'volume': '1.184', 'turnover': '57674.9978', 'confirm': False, 'timestamp': 1707836400906}], 'ts': 1707836400906, 'type': 'snapshot'}
+
+No signal!
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707836400000, 'end': 1707839999999, 'interval': '60', 'open': '48706.6', 'close': '48749', 'high': '49039.9', 'low': '48455', 'volume': '13835.762', 'turnover': '674723839.4364', 'confirm': True, 'timestamp': 1707840000905}, {'start': 1707840000000, 'end': 1707843599999, 'interval': '60', 'open': '48749', 'close': '48751.1', 'high': '48751.2', 'low': '48749', 'volume': '0.026', 'turnover': '1267.5164', 'confirm': False, 'timestamp': 1707840000905}], 'ts': 1707840000905, 'type': 'snapshot'}
+
+No signal!
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707840000000, 'end': 1707843599999, 'interval': '60', 'open': '48749', 'close': '48487.9', 'high': '48873.2', 'low': '48444.3', 'volume': '6956.225', 'turnover': '338602312.2327', 'confirm': True, 'timestamp': 1707843600905}, {'start': 1707843600000, 'end': 1707847199999, 'interval': '60', 'open': '48487.9', 'close': '48488', 'high': '48488', 'low': '48487.9', 'volume': '6.528', 'turnover': '316529.6454', 'confirm': False, 'timestamp': 1707843600905}], 'ts': 1707843600905, 'type': 'snapshot'}
+
+2024-02-13 17:00:00.905000 | TRADE SIGNAL: {'asset': 'ZETAUSDT', '1hPct': -0.05369439398420006, 'action': 'Short'}
+
+Asking price is: 2.2403
+
+Calculated quantity: 17.0
+
+Take Profit=2.1283000000000003, Stop Loss=2.3523
+
+2024-02-13 17:00:01.934124+00:00 | Purchased 17.0 of ZETAUSDT
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707843600000, 'end': 1707847199999, 'interval': '60', 'open': '48487.9', 'close': '48861.4', 'high': '48912.9', 'low': '48300.1', 'volume': '9927.162', 'turnover': '482559691.1764', 'confirm': True, 'timestamp': 1707847200907}, {'start': 1707847200000, 'end': 1707850799999, 'interval': '60', 'open': '48861.4', 'close': '48861.4', 'high': '48861.4', 'low': '48861.3', 'volume': '0.024', 'turnover': '1172.672', 'confirm': False, 'timestamp': 1707847200907}], 'ts': 1707847200907, 'type': 'snapshot'}
+
+No signal!
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707847200000, 'end': 1707850799999, 'interval': '60', 'open': '48861.4', 'close': '49126.8', 'high': '49286.6', 'low': '48842.9', 'volume': '8549.627', 'turnover': '419902413.5138', 'confirm': True, 'timestamp': 1707850800904}, {'start': 1707850800000, 'end': 1707854399999, 'interval': '60', 'open': '49126.8', 'close': '49125.2', 'high': '49126.8', 'low': '49125.2', 'volume': '3.932', 'turnover': '193166.1046', 'confirm': False, 'timestamp': 1707850800904}], 'ts': 1707850800904, 'type': 'snapshot'}
+
+2024-02-13 19:00:00.904000 | TRADE SIGNAL: {'asset': 'CKBUSDT', '1hPct': 0.07815820543093266, 'action': 'Long'}
+
+Asking price is: 0.009149
+
+Calculated quantity: 4390.0
+
+Take Profit=0.009606, Stop Loss=0.008692
+
+
+Failed to place order!
+
+ERROR: Format specifier missing precision
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707850800000, 'end': 1707854399999, 'interval': '60', 'open': '49126.8', 'close': '49050', 'high': '49265', 'low': '48907.5', 'volume': '4402.972', 'turnover': '216133548.9879', 'confirm': True, 'timestamp': 1707854400906}, {'start': 1707854400000, 'end': 1707857999999, 'interval': '60', 'open': '49050', 'close': '49049.9', 'high': '49050', 'low': '49049.9', 'volume': '0.085', 'turnover': '4169.2423', 'confirm': False, 'timestamp': 1707854400906}], 'ts': 1707854400906, 'type': 'snapshot'}
+
+2024-02-13 20:00:00.906000 | TRADE SIGNAL: {'asset': '10000WENUSDT', '1hPct': 0.13463875759621868, 'action': 'Long'}
+
+Asking price is: 0.8415
+
+Calculated quantity: 47.0
+
+Take Profit=0.8836, Stop Loss=0.7994
+
+
+Failed to place order!
+
+ERROR: OrderLinkedID is duplicate (ErrCode: 110072) (ErrTime: 20:00:02).
+Request → POST https://api.bybit.com/v5/order/create: {"category": "linear", "symbol": "10000WENUSDT", "side": "Buy", "orderType": "Market", "qty": "47", "price": "15600", "takeProfit": "0.8836", "stopLoss": "0.7994", "timeInForce": "PostOnly", "orderLinkId": "10000WENUSDT - 2024-02-13", "isLeverage": 0, "orderFilter": "Order"}.
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707854400000, 'end': 1707857999999, 'interval': '60', 'open': '49050', 'close': '49412.3', 'high': '49523.4', 'low': '49007.9', 'volume': '7103.802', 'turnover': '350532207.9439', 'confirm': True, 'timestamp': 1707858000904}, {'start': 1707858000000, 'end': 1707861599999, 'interval': '60', 'open': '49412.3', 'close': '49411.5', 'high': '49412.3', 'low': '49410', 'volume': '0.16', 'turnover': '7905.6219', 'confirm': False, 'timestamp': 1707858000904}], 'ts': 1707858000904, 'type': 'snapshot'}
+
+No signal!
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707858000000, 'end': 1707861599999, 'interval': '60', 'open': '49412.3', 'close': '49551.3', 'high': '49766.8', 'low': '49355', 'volume': '7419.865', 'turnover': '368123015.4277', 'confirm': True, 'timestamp': 1707861600906}, {'start': 1707861600000, 'end': 1707865199999, 'interval': '60', 'open': '49551.3', 'close': '49551.4', 'high': '49551.4', 'low': '49551.3', 'volume': '0.162', 'turnover': '8027.3207', 'confirm': False, 'timestamp': 1707861600906}], 'ts': 1707861600906, 'type': 'snapshot'}
+
+No signal!
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707861600000, 'end': 1707865199999, 'interval': '60', 'open': '49551.3', 'close': '49540', 'high': '49657.7', 'low': '49267', 'volume': '3726.255', 'turnover': '184375410.9093', 'confirm': True, 'timestamp': 1707865200905}, {'start': 1707865200000, 'end': 1707868799999, 'interval': '60', 'open': '49540', 'close': '49539.9', 'high': '49540.1', 'low': '49539.9', 'volume': '3.552', 'turnover': '175966.08', 'confirm': False, 'timestamp': 1707865200905}], 'ts': 1707865200905, 'type': 'snapshot'}
+
+2024-02-13 23:00:00.905000 | TRADE SIGNAL: {'asset': '10000WENUSDT', '1hPct': 0.09217514457689124, 'action': 'Long'}
+
+Asking price is: 0.9251
+
+Calculated quantity: 43.0
+
+Take Profit=0.9714, Stop Loss=0.8788
+
+
+Failed to place order!
+
+ERROR: OrderLinkedID is duplicate (ErrCode: 110072) (ErrTime: 23:00:02).
+Request → POST https://api.bybit.com/v5/order/create: {"category": "linear", "symbol": "10000WENUSDT", "side": "Buy", "orderType": "Market", "qty": "43", "price": "15600", "takeProfit": "0.9714", "stopLoss": "0.8788", "timeInForce": "PostOnly", "orderLinkId": "10000WENUSDT - 2024-02-13", "isLeverage": 0, "orderFilter": "Order"}.
+
+2024-02-13 23:00:00.905000 | TRADE SIGNAL: {'asset': 'CKBUSDT', '1hPct': -0.05034375693058324, 'action': 'Short'}
+
+Asking price is: 0.008576
+
+Calculated quantity: 4680.0
+
+Take Profit=0.008147, Stop Loss=0.009004999999999999
+
+
+Failed to place order!
+
+ERROR: Format specifier missing precision
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707865200000, 'end': 1707868799999, 'interval': '60', 'open': '49540', 'close': '49710.4', 'high': '49798', 'low': '49362', 'volume': '2924.691', 'turnover': '145113001.168', 'confirm': True, 'timestamp': 1707868800905}, {'start': 1707868800000, 'end': 1707872399999, 'interval': '60', 'open': '49710.4', 'close': '49710.5', 'high': '49710.5', 'low': '49710.4', 'volume': '0.2', 'turnover': '9942.1', 'confirm': False, 'timestamp': 1707868800905}], 'ts': 1707868800905, 'type': 'snapshot'}
+
+2024-02-14 00:00:00.905000 | TRADE SIGNAL: {'asset': 'MYROUSDT', '1hPct': 0.08840579710144914, 'action': 'Long'}
+
+Asking price is: 0.0751
+
+Calculated quantity: 534.0
+
+Take Profit=0.0789, Stop Loss=0.0713
+
+2024-02-14 00:00:03.091800+00:00 | Purchased 534.0 of MYROUSDT
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707868800000, 'end': 1707872399999, 'interval': '60', 'open': '49710.4', 'close': '49506.1', 'high': '49733', 'low': '49401.9', 'volume': '3077.186', 'turnover': '152471803.0093', 'confirm': True, 'timestamp': 1707872400905}, {'start': 1707872400000, 'end': 1707875999999, 'interval': '60', 'open': '49506.1', 'close': '49515.9', 'high': '49515.9', 'low': '49506.1', 'volume': '3.611', 'turnover': '178772.8978', 'confirm': False, 'timestamp': 1707872400905}], 'ts': 1707872400905, 'type': 'snapshot'}
+
+No signal!
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707872400000, 'end': 1707875999999, 'interval': '60', 'open': '49506.1', 'close': '49454.8', 'high': '49547.8', 'low': '49329', 'volume': '2473.36', 'turnover': '122271203.5393', 'confirm': True, 'timestamp': 1707876000905}, {'start': 1707876000000, 'end': 1707879599999, 'interval': '60', 'open': '49454.8', 'close': '49454.8', 'high': '49454.8', 'low': '49454.8', 'volume': '0', 'turnover': '0', 'confirm': False, 'timestamp': 1707876000905}], 'ts': 1707876000905, 'type': 'snapshot'}
+
+No signal!
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707876000000, 'end': 1707879599999, 'interval': '60', 'open': '49454.8', 'close': '49514.4', 'high': '49584', 'low': '49391.7', 'volume': '1181.344', 'turnover': '58484420.6386', 'confirm': True, 'timestamp': 1707879600905}, {'start': 1707879600000, 'end': 1707883199999, 'interval': '60', 'open': '49514.4', 'close': '49514.4', 'high': '49514.4', 'low': '49514.4', 'volume': '0.003', 'turnover': '148.5432', 'confirm': False, 'timestamp': 1707879600905}], 'ts': 1707879600905, 'type': 'snapshot'}
+
+No signal!
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707879600000, 'end': 1707883199999, 'interval': '60', 'open': '49514.4', 'close': '49539.2', 'high': '49651.6', 'low': '49490.9', 'volume': '1682.938', 'turnover': '83425472.3691', 'confirm': True, 'timestamp': 1707883200905}, {'start': 1707883200000, 'end': 1707886799999, 'interval': '60', 'open': '49539.2', 'close': '49539.2', 'high': '49539.2', 'low': '49539.2', 'volume': '0', 'turnover': '0', 'confirm': False, 'timestamp': 1707883200905}], 'ts': 1707883200905, 'type': 'snapshot'}
+
+2024-02-14 04:00:00.905000 | TRADE SIGNAL: {'asset': '10000WENUSDT', '1hPct': 0.08587200981394405, 'action': 'Long'}
+
+Asking price is: 1.0622
+
+Calculated quantity: 35.0
+
+Take Profit=1.1153, Stop Loss=1.0091
+
+2024-02-14 04:00:02.670591+00:00 | Purchased 35.0 of 10000WENUSDT
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707883200000, 'end': 1707886799999, 'interval': '60', 'open': '49539.2', 'close': '49405.9', 'high': '49609.4', 'low': '49220.5', 'volume': '3688.971', 'turnover': '182132171.4688', 'confirm': True, 'timestamp': 1707886800905}, {'start': 1707886800000, 'end': 1707890399999, 'interval': '60', 'open': '49405.9', 'close': '49405.9', 'high': '49405.9', 'low': '49405.9', 'volume': '0', 'turnover': '0', 'confirm': False, 'timestamp': 1707886800905}], 'ts': 1707886800905, 'type': 'snapshot'}
+
+2024-02-14 05:00:00.905000 | TRADE SIGNAL: {'asset': 'AIUSDT', '1hPct': -0.052314116691799084, 'action': 'Short'}
+
+Asking price is: 1.6339
+
+Calculated quantity: 23.3
+
+Take Profit=1.5522, Stop Loss=1.7156
+
+2024-02-14 05:00:02.999909+00:00 | Purchased 23.3 of AIUSDT
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707886800000, 'end': 1707890399999, 'interval': '60', 'open': '49405.9', 'close': '49569', 'high': '49673', 'low': '49405.9', 'volume': '2834.119', 'turnover': '140461753.5857', 'confirm': True, 'timestamp': 1707890400906}, {'start': 1707890400000, 'end': 1707893999999, 'interval': '60', 'open': '49569', 'close': '49569.1', 'high': '49569.1', 'low': '49569', 'volume': '0.022', 'turnover': '1090.52', 'confirm': False, 'timestamp': 1707890400906}], 'ts': 1707890400906, 'type': 'snapshot'}
+
+No signal!
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707890400000, 'end': 1707893999999, 'interval': '60', 'open': '49569', 'close': '49659.7', 'high': '49681', 'low': '49534.3', 'volume': '2172.415', 'turnover': '107790515.8337', 'confirm': True, 'timestamp': 1707894000905}, {'start': 1707894000000, 'end': 1707897599999, 'interval': '60', 'open': '49659.7', 'close': '49659.7', 'high': '49659.7', 'low': '49659.7', 'volume': '0', 'turnover': '0', 'confirm': False, 'timestamp': 1707894000905}], 'ts': 1707894000905, 'type': 'snapshot'}
+
+2024-02-14 07:00:00.905000 | TRADE SIGNAL: {'asset': 'PROMUSDT', '1hPct': 0.2640580461259394, 'action': 'Long'}
+
+Asking price is: 9.767
+
+Calculated quantity: 3.9000000000000004
+
+Take Profit=10.255, Stop Loss=9.279
+
+2024-02-14 07:00:03.077536+00:00 | Purchased 3.9000000000000004 of PROMUSDT
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707894000000, 'end': 1707897599999, 'interval': '60', 'open': '49659.7', 'close': '49859.9', 'high': '49912', 'low': '49638.4', 'volume': '4630.826', 'turnover': '230555933.1316', 'confirm': True, 'timestamp': 1707897600905}, {'start': 1707897600000, 'end': 1707901199999, 'interval': '60', 'open': '49859.9', 'close': '49859.9', 'high': '49859.9', 'low': '49859.9', 'volume': '0.016', 'turnover': '797.7584', 'confirm': False, 'timestamp': 1707897600905}], 'ts': 1707897600905, 'type': 'snapshot'}
+
+2024-02-14 08:00:00.905000 | TRADE SIGNAL: {'asset': 'PROMUSDT', '1hPct': 0.06621566215662145, 'action': 'Long'}
+
+Asking price is: 10.44
+
+Calculated quantity: 3.4000000000000004
+
+Take Profit=10.962, Stop Loss=9.918000000000001
+
+
+Failed to place order!
+
+ERROR: OrderLinkedID is duplicate (ErrCode: 110072) (ErrTime: 08:00:02).
+Request → POST https://api.bybit.com/v5/order/create: {"category": "linear", "symbol": "PROMUSDT", "side": "Buy", "orderType": "Market", "qty": "3.4", "price": "15600", "takeProfit": "10.962", "stopLoss": "9.918", "timeInForce": "PostOnly", "orderLinkId": "PROMUSDT - 2024-02-14", "isLeverage": 0, "orderFilter": "Order"}.
+
+2024-02-14 08:00:00.905000 | TRADE SIGNAL: {'asset': '10000WENUSDT', '1hPct': -0.058098915241772464, 'action': 'Short'}
+
+Asking price is: 1.02
+
+Calculated quantity: 35.0
+
+Take Profit=0.9690000000000001, Stop Loss=1.071
+
+
+Failed to place order!
+
+ERROR: OrderLinkedID is duplicate (ErrCode: 110072) (ErrTime: 08:00:03).
+Request → POST https://api.bybit.com/v5/order/create: {"category": "linear", "symbol": "10000WENUSDT", "side": "Sell", "orderType": "Market", "qty": "35", "price": "15600", "takeProfit": "0.9690", "stopLoss": "1.0710", "timeInForce": "PostOnly", "orderLinkId": "10000WENUSDT - 2024-02-14", "isLeverage": 0, "orderFilter": "Order"}.
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707897600000, 'end': 1707901199999, 'interval': '60', 'open': '49859.9', 'close': '50816.1', 'high': '50924.5', 'low': '49743.8', 'volume': '15822.416', 'turnover': '796068967.5944', 'confirm': True, 'timestamp': 1707901200905}, {'start': 1707901200000, 'end': 1707904799999, 'interval': '60', 'open': '50816.1', 'close': '50835.6', 'high': '50835.7', 'low': '50807.1', 'volume': '11.631', 'turnover': '591031.7282', 'confirm': False, 'timestamp': 1707901200905}], 'ts': 1707901200905, 'type': 'snapshot'}
+
+2024-02-14 09:00:00.905000 | TRADE SIGNAL: {'asset': 'PROMUSDT', '1hPct': 0.191423901547928, 'action': 'Long'}
+
+Asking price is: 12.46
+
+Calculated quantity: 2.9000000000000004
+
+Take Profit=13.083, Stop Loss=11.837
+
+
+Failed to place order!
+
+ERROR: OrderLinkedID is duplicate (ErrCode: 110072) (ErrTime: 09:00:02).
+Request → POST https://api.bybit.com/v5/order/create: {"category": "linear", "symbol": "PROMUSDT", "side": "Buy", "orderType": "Market", "qty": "2.9", "price": "15600", "takeProfit": "13.083", "stopLoss": "11.837", "timeInForce": "PostOnly", "orderLinkId": "PROMUSDT - 2024-02-14", "isLeverage": 0, "orderFilter": "Order"}.
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707901200000, 'end': 1707904799999, 'interval': '60', 'open': '50816.1', 'close': '51576', 'high': '51765.6', 'low': '50672.2', 'volume': '31273.354', 'turnover': '1601816944.4182', 'confirm': True, 'timestamp': 1707904800905}, {'start': 1707904800000, 'end': 1707908399999, 'interval': '60', 'open': '51576', 'close': '51578.7', 'high': '51578.7', 'low': '51570', 'volume': '5.089', 'turnover': '262460.1538', 'confirm': False, 'timestamp': 1707904800905}], 'ts': 1707904800905, 'type': 'snapshot'}
+
+2024-02-14 10:00:00.905000 | TRADE SIGNAL: {'asset': 'LEVERUSDT', '1hPct': 0.20394736842105265, 'action': 'Long'}
+
+Asking price is: 0.001832
+
+Calculated quantity: 19700.0
+
+Take Profit=0.001924, Stop Loss=0.00174
+
+
+Failed to place order!
+
+ERROR: Format specifier missing precision
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707904800000, 'end': 1707908399999, 'interval': '60', 'open': '51576', 'close': '51336.1', 'high': '51625.5', 'low': '51259', 'volume': '8340.006', 'turnover': '429009243.4448', 'confirm': True, 'timestamp': 1707908400905}, {'start': 1707908400000, 'end': 1707911999999, 'interval': '60', 'open': '51336.1', 'close': '51330.1', 'high': '51336.1', 'low': '51330', 'volume': '1.548', 'turnover': '79466.2621', 'confirm': False, 'timestamp': 1707908400905}], 'ts': 1707908400905, 'type': 'snapshot'}
+
+2024-02-14 11:00:00.905000 | TRADE SIGNAL: {'asset': 'NTRNUSDT', '1hPct': 0.06323921515006492, 'action': 'Long'}
+
+Asking price is: 1.5585
+
+Calculated quantity: 22.0
+
+Take Profit=1.6364, Stop Loss=1.4806000000000001
+
+2024-02-14 11:00:02.066621+00:00 | Purchased 22.0 of NTRNUSDT
+
+2024-02-14 11:00:00.905000 | TRADE SIGNAL: {'asset': 'MAVIAUSDT', '1hPct': -0.06190533542093235, 'action': 'Short'}
+
+Asking price is: 7.797
+
+Calculated quantity: 4.3
+
+Take Profit=7.407, Stop Loss=8.187
+
+2024-02-14 11:00:03.335477+00:00 | Purchased 4.3 of MAVIAUSDT
+
+{'topic': 'kline.60.BTCUSDT', 'data': [{'start': 1707908400000, 'end': 1707911999999, 'interval': '60', 'open': '51336.1', 'close': '51600', 'high': '51831', 'low': '51019.1', 'volume': '11779.001', 'turnover': '605807249.4311', 'confirm': True, 'timestamp': 1707912000905}, {'start': 1707912000000, 'end': 1707915599999, 'interval': '60', 'open': '51600', 'close': '51600', 'high': '51600.1', 'low': '51600', 'volume': '5.578', 'turnover': '287824.8274', 'confirm': False, 'timestamp': 1707912000905}], 'ts': 1707912000905, 'type': 'snapshot'}
+
+2024-02-14 12:00:00.905000 | TRADE SIGNAL: {'asset': 'STXUSDT', '1hPct': 0.06995098259657317, 'action': 'Long'}
+
+Asking price is: 2.38005
+
+Calculated quantity: 14.3
+
+Take Profit=2.49905, Stop Loss=2.26105
+
+2024-02-14 12:00:03.302071+00:00 | Purchased 14.3 of STXUSDT
+
+2024-02-14 12:00:00.905000 | TRADE SIGNAL: {'asset': 'PROMUSDT', '1hPct': -0.053975976889159116, 'action': 'Short'}
+
+Asking price is: 12.454
+
+Calculated quantity: 2.7
+
+Take Profit=11.831, Stop Loss=13.077
+
+
+Failed to place order!
+
+ERROR: OrderLinkedID is duplicate (ErrCode: 110072) (ErrTime: 12:00:04).
+Request → POST https://api.bybit.com/v5/order/create: {"category": "linear", "symbol": "PROMUSDT", "side": "Sell", "orderType": "Market", "qty": "2.7", "price": "15600", "takeProfit": "11.831", "stopLoss": "13.077", "timeInForce": "PostOnly", "orderLinkId": "PROMUSDT - 2024-02-14", "isLeverage": 0, "orderFilter": "Order"}.
