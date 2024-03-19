@@ -7,8 +7,13 @@ import pandas as pd
 import time
 from datetime import datetime
 from datetime import timezone
-from pybit.unified_trading import HTTP
 
+
+from pybit.unified_trading import HTTP
+import binance
+from binance import Client
+
+#%%
 # Function to download data from bybit
 def get_bybit_data(product_type, symbol, interval, start_time, end_time=None, limit=None, verbose=False):
     
@@ -154,7 +159,96 @@ if __name__ == '__main__':
                           verbose=True)
         
     data['Close'].plot(figsize=(10,6), title='BTCUSDT')
+
+#%%
+def get_binance_data(symbol, interval, start_time, end_time=None, product_type=None, limit=None, verbose=False):
+        
+    ''' Download data from Binance Exchange
     
+    Parameters
+    ==========
+    product_type: string
+        product type. spot, liniear, inverse
+    symbol: string
+        asset symbol
+    interval: int
+        timeframe interval in minutes
+    start_time: string
+        Starting time of data
+    end_time: string
+        End point of data
+    '''
+    
+    # Connect to API
+    client = Client()
+    
+    # Transform interval
+    interval_mapping = {1:client.KLINE_INTERVAL_1MINUTE, 
+                        5:client.KLINE_INTERVAL_5MINUTE, 
+                        15:client.KLINE_INTERVAL_15MINUTE,
+                        30:client.KLINE_INTERVAL_30MINUTE,
+                        60:client.KLINE_INTERVAL_1HOUR, 
+                        120:client.KLINE_INTERVAL_2HOUR, 
+                        240:client.KLINE_INTERVAL_4HOUR,
+                        1440:client.KLINE_INTERVAL_1DAY}
+    interval_ = interval_mapping.get(interval)
+    
+    # Convert time variables to timestamps
+    start_time = datetime.strptime(start_time, '%Y-%m-%d %H:%M:%S')
+    start_ts = int(start_time.replace(tzinfo=timezone.utc).timestamp()) * 1000 # convert timestamp to ms
+    
+    # Set end_time to current time if None is provided
+    if end_time is None:
+        end_time = datetime.now()
+        end_ts = int(end_time.replace(tzinfo=timezone.utc).timestamp()) * 1000 # convert timestamp to ms
+    else:
+        end_time = datetime.strptime(end_time, '%Y-%m-%d %H:%M:%S')
+        end_ts = int(end_time.replace(tzinfo=timezone.utc).timestamp()) * 1000 # convert timestamp to ms
+    
+    # set main list object & current time cursor
+    raw_ls = []
+    c_ts = start_ts
+
+    # download the limited amount of bars from the specified start time
+    raw_ls = client.get_historical_klines(
+            klines_type=binance.enums.HistoricalKlinesType.SPOT,
+            symbol=symbol,
+            interval=interval_,
+            start_str=c_ts,             # start date string in UTC format or timestamp in milliseconds
+            end_str=end_ts
+    )
+        
+    # convert to dataframe
+    df = pd.DataFrame(raw_ls)
+        
+    df.columns = ['Time', 'Open', 'High', 'Low', 'Close', 'Volume', 'Close time', 'Turnover',
+                  'Number of trades', 'Taker buy base asset volume', 'Taker buy quote asset volume',
+                  'Ignore']
+    
+    # Convert fields to numerical values
+    df[df.columns] = df[df.columns].apply(pd.to_numeric)  
+    
+    # Convert time column to datetime
+    df['Time'] = pd.to_datetime(df['Time'], unit='ms')
+
+    # Sort the data by Time
+    df = df.sort_values('Time', ignore_index=True)
+    
+    # Select columns
+    cols = ['Time', 'Open','High','Low', 'Close','Volume']
+    df = df[cols]
+    
+    # return ohlcv dataframe
+    return df
+
+if __name__ == '__main__':
+    data = get_binance_data(symbol='BTCUSDT', interval=60,
+                          start_time='2017-01-01 00:00:00',
+                          end_time='2017-12-31 23:59:00',
+                          verbose=True)
+
+#%%
+        
 # To Do:
     # Download data for the first time.
 
