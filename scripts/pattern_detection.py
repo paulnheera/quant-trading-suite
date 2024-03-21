@@ -3,8 +3,10 @@
 # Load Libraries
 import numpy as np
 import pandas as pd
+import time
 from scipy.signal import argrelextrema
 import matplotlib.pyplot as plt
+
 
 from scripts.data_download import get_bybit_data
 
@@ -49,28 +51,73 @@ def inflexion_points(data, order=10, col='Close'):
 
 def label_points(result):
     
-    local_max_df = result[result['local_max'] == 1]
-    local_min_df = result[result['local_min'] == 1]
+    local_max_df = result[result['local_max'] == 1].copy()
+    local_min_df = result[result['local_min'] == 1].copy()
     
-    local_max_df['label'] = np.where(local_max_df['Close'] > local_max_df['Close'].shift(1), 'HH', 'LH')
-    local_min_df['label'] = np.where(local_min_df['Close'] < local_min_df['Close'].shift(1), 'LL', 'HL')
+    local_max_df.iloc[:, 'label'] = np.where(local_max_df['Close'] > local_max_df['Close'].shift(1), 'HH', 'LH')
+    local_min_df.iloc[:, 'label'] = np.where(local_min_df['Close'] < local_min_df['Close'].shift(1), 'LL', 'HL')
     
     labeled_points = pd.concat([local_max_df[['Time', 'label']], local_min_df[['Time', 'label']]])
     
     labeled_points.sort_values('Time', inplace=True, ignore_index=True)
     
     return labeled_points
+
+#%% Scan symbols
+
+def scan_for_uptrend(symbols):
     
+    for symbol in symbols:
+        print(f'Working on {symbol} ...')
+        raw_data = get_bybit_data(product_type='linear', symbol=symbol, interval=60,
+                          start_time='2024-03-01 00:00:00',
+                          verbose=False)
+        
+        result = inflexion_points(raw_data, order=5)
+        labeled_points = label_points(result)
+        
+        if (labeled_points['label'].iloc[-1][0] == 'H' and labeled_points['label'].iloc[-2][0] == 'H'
+            and labeled_points['label'].iloc[-1][0] == 'H'):
+            
+            print(f'Uptrend detected on {symbol}')
+            
+            result = result.iloc[-500:] # The last 100 points
+            
+            # Plot the closing price data
+            plt.figure(figsize=(10, 6))
+            plt.plot(result['Close'], label='Close Price', color='blue')
+            
+            # Plot local maxima and minima points
+            local_max_points = result.loc[result['local_max'] == 1, 'Close']
+            local_min_points = result.loc[result['local_min'] == 1, 'Close']
+            plt.scatter(local_max_points.index, local_max_points, color='red', label='Local Maxima')
+            plt.scatter(local_min_points.index, local_min_points, color='green', label='Local Minima')
+            
+            plt.title(f'{symbol} Closing Price with Local Maxima and Minima')
+            plt.xlabel('Date')
+            plt.ylabel('Price')
+            plt.legend()
+            plt.grid(True)
+            plt.show()
+            
+        #time.sleep(1)
+
+#%%
+
+scan_for_uptrend(df['symbol'])
+            
 
 #%%
 if __name__ == '__main__':
     # Download Data
-    raw_data = get_bybit_data(product_type='linear', symbol='SOLUSDT', interval=60,
+    raw_data = get_bybit_data(product_type='linear', symbol='ONDOUSDT', interval=60,
                       start_time='2024-03-01 00:00:00',
                       verbose=False)
     
     # Add columns for local maxima and minima
     result = inflexion_points(raw_data, order=5)
+    
+    labeled_points = label_points(result)
     
     result = result.iloc[-500:] # The last 100 points
     
