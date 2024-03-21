@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 from scripts.data_download import get_bybit_data
 
 
-# Inflexion Points
+#%% Inflexion Points
 def inflexion_points(data, order=10, col='Close'):
     """
     Creates two columnes local_max, local_min indicating if the 
@@ -45,16 +45,34 @@ def inflexion_points(data, order=10, col='Close'):
     
     return data
 
+#%% Label Inflexion Points
+
+def label_points(result):
+    
+    local_max_df = result[result['local_max'] == 1]
+    local_min_df = result[result['local_min'] == 1]
+    
+    local_max_df['label'] = np.where(local_max_df['Close'] > local_max_df['Close'].shift(1), 'HH', 'LH')
+    local_min_df['label'] = np.where(local_min_df['Close'] < local_min_df['Close'].shift(1), 'LL', 'HL')
+    
+    labeled_points = pd.concat([local_max_df[['Time', 'label']], local_min_df[['Time', 'label']]])
+    
+    labeled_points.sort_values('Time', inplace=True, ignore_index=True)
+    
+    return labeled_points
+    
+
+#%%
 if __name__ == '__main__':
     # Download Data
-    raw_data = get_bybit_data(product_type='linear', symbol='DOGEUSDT', interval=60,
-                      start_time='2024-01-01 00:00:00',
+    raw_data = get_bybit_data(product_type='linear', symbol='SOLUSDT', interval=60,
+                      start_time='2024-03-01 00:00:00',
                       verbose=False)
     
     # Add columns for local maxima and minima
-    result = inflexion_points(raw_data, order=20)
+    result = inflexion_points(raw_data, order=5)
     
-    result = result.iloc[-200:] # The last 100 points
+    result = result.iloc[-500:] # The last 100 points
     
     # Plot the closing price data
     plt.figure(figsize=(10, 6))
