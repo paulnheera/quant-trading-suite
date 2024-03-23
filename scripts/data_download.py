@@ -95,7 +95,7 @@ def get_bybit_data(product_type, symbol, interval, start_time, end_time=None, li
             temp = client.get_kline(
                     product_type=product_type,
                     symbol=symbol,
-                    interval=str(interval),
+                    interval=str(interval_),
                     start=c_ts,
                     limit=min(1000,diff)
     
@@ -143,9 +143,10 @@ def get_bybit_data(product_type, symbol, interval, start_time, end_time=None, li
     # return ohlcv dataframe
     return df
 
+#%%
 if __name__ == '__main__':
     
-    data = get_bybit_data(product_type='linear', symbol='BTCUSDT', interval=60,
+    data = get_bybit_data(product_type='linear', symbol='BTCUSDT', interval=1440,
                           start_time='2017-01-01 00:00:00',
                           end_time='2017-12-31 23:59:00',
                           verbose=True)
@@ -251,8 +252,6 @@ if __name__ == '__main__':
         
 # To Do:
     # Download data for the first time.
-
-# Function to download data from binance
 
 # Fuction to download data from kucoin 
 
