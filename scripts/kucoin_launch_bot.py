@@ -86,6 +86,7 @@ async def main(symbol):
                 
                 # Check Existing Balance
                 orders = tradeClient.get_fill_list(tradeType='TRADE', symbol=symbol).get('items')
+                #TODO: Use get_recent_fills instead (Would first need to test that it works.)
                 if len(orders) > 0:
                     orders_df = pd.DataFrame(orders)
                     buys_df = orders_df[orders_df['side'] == 'buy']
@@ -107,6 +108,8 @@ async def main(symbol):
                         print(f'ERROR: {e}')
                 else:
                     print(f'{current_time()} | No existing position (No orders filled.)')
+                ##TODO: Need an else statement here. Either we exit an exist pre-market order or we enter into one.
+                ##TODO: Also if we are entering into one, we need to cancel any non filled pre-market orders.
                 
                 # Create Buy Order (if no buy order has been created)
                 qty = AMOUNT / float(ask_price) # need to round down
@@ -126,11 +129,11 @@ async def main(symbol):
                 take_profit = float(ask_price) * (1+TAKE_PROFIT)
                 take_profit = round(round(take_profit / p) * p, int(-math.log10(p)))
                 try:
-                    tp_order = tradeClient.create_limit_stop_order(SYMBOL,
-                                                                    side='sell',
-                                                                    size=str(qty),
-                                                                    price=str(take_profit),
-                                                                    stopPrice=str(take_profit))
+                    tp_order = tradeClient.create_limit_order(SYMBOL,
+                                                              side='sell',
+                                                              size=str(qty),
+                                                              price=str(take_profit)
+                                                              )
                     print(f'{current_time()} | Take profit set at {take_profit}.')
                 except Exception as e:
                     print(f'{current_time()} | Failed to place take profit limit stop order!')
