@@ -64,9 +64,7 @@ async def main(symbol):
     
     async def deal_msg(msg):
             nonlocal EXECUTED
-            
-            print(msg)
-            
+                        
             if not EXECUTED:
                 print('Not Executed!')
                 
@@ -159,13 +157,15 @@ async def main(symbol):
             ## SAVE DATA!
             today = datetime.now().date()
             if msg['topic'] == f'/market/match:{symbol}':
-                msg_str = json.dumps(msg)
+                data = msg['data']
+                data_str = json.dumps(data)
                 async with aiofiles.open(f"{symbol} - trades - {today}.txt", mode = "a") as f:
-                    await f.write(msg_str + "\n") # await just tells python: "while doing this job is running, if there is nothing to do, feel free to go an do something else."
+                    await f.write(data_str + "\n") # await just tells python: "while doing this job is running, if there is nothing to do, feel free to go an do something else."
             elif msg['topic'] == f'/spotMarket/level2Depth5:{symbol}':
-                msg_str = json.dumps(msg)
+                data = msg['data']
+                data_str = json.dumps(data)
                 async with aiofiles.open(f"{symbol} - OB spanshots - {today}.txt", mode = "a") as f:
-                    await f.write(msg_str + "\n")
+                    await f.write(data_str + "\n")
                     
     # is public
     client = WsToken()
