@@ -10,6 +10,7 @@ import asyncio
 import aiofiles
 import socket
 import json
+import time
 from datetime import datetime
 from configparser import ConfigParser
 from kucoin.client import WsToken
@@ -46,7 +47,7 @@ if len(sys.argv) != 2:
 
 # TODO: Make the below inputs required when the script is run in command prompt or using bash.
 SYMBOL = sys.argv[1]
-AMOUNT = 10 # amount of USDT to trade
+AMOUNT = 30 # amount of USDT to trade
 TAKE_PROFIT = 0.1 # Take profit after a 50% price change
 STOP_LOSS = 0.5
 
@@ -82,9 +83,12 @@ async def main(symbol):
                 q = float(result.get('baseIncrement'))      # quantity precision
                 q_min = float(result.get('baseMinSize'))    # minimum quantity
                 
+                time.sleep(1) # Sleep for one second.
+                
+                #*********************************************************************************************************
                 # Check Existing Balance
                 orders = tradeClient.get_fill_list(tradeType='TRADE', symbol=symbol).get('items')
-                #TODO: Use get_recent_fills instead (Would first need to test that it works.)
+
                 if len(orders) > 0:
                     orders_df = pd.DataFrame(orders)
                     buys_df = orders_df[orders_df['side'] == 'buy']
@@ -108,6 +112,8 @@ async def main(symbol):
                     print(f'{current_time()} | No existing position (No orders filled.)')
                 ##TODO: Need an else statement here. Either we exit an exist pre-market order or we enter into one.
                 ##TODO: Also if we are entering into one, we need to cancel any non filled pre-market orders.
+                
+                #********************************************************************************************************
                 
                 # Create Buy Order (if no buy order has been created)
                 qty = AMOUNT / float(ask_price) # need to round down
