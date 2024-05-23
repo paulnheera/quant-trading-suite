@@ -20,8 +20,15 @@ api_key = config.get('luno', 'api_key')
 api_secret = config.get('luno', 'api_secret')
 
 #%% 
+sequence = None
+bids = None
+asks = None
 
 async def connect(pair):
+    global sequence
+    global bids
+    global asks
+    
     # What does this function do?
     # Connects to the Websocket and retrieve the first message.
     
@@ -40,7 +47,13 @@ async def connect(pair):
         }))
     
     initial = await websocket.recv()
+    initial_data = json.loads(initial)
+    sequence = int(initial_data['sequence'])
+    
+    asks = {x['id']: [float(x['price']), float(x['volume'])] for x in initial_data['asks']}
+    bids = {x['id']: [float(x['price']), float(x['volume'])] for x in initial_data['bids']}
     print('Initial state recieved.')
+    
     # Save the message data
     today = datetime.now().date()
     async with aiofiles.open(f'XBTZAR - OB snapshot - {today}.txt', mode='a') as f:
@@ -58,6 +71,85 @@ async def handle_message(message): # coroutine function
     async with aiofiles.open(f'XBTZAR - OB updates - {today}.txt', mode='a') as f:
         await f.write(message + "\n")
 
+async def handle_message2(message): # coroutine function
+    global sequence
+
+    data = json.loads(message)
+    new_sequence = int(data['sequence'])
+    
+    if new_sequence != sequence + 1:
+        print(f'Sequence broken: expected "{sequence+1}", received "new_sequence".')
+        
+    sequence = new_sequence
+    
+    trades = process_message(data)
+    
+    today = datetime.now().date()
+    # Save trades
+    if trades:
+        async with aiofiles.open(f'XBTZAR - OB updates - {today}.txt', mode='a') as f:
+            await f.write(str(trades) + "\n")
+    
+    # Consolidate order book and save snapshot
+    
+    
+    # Save the message data
+    # async with aiofiles.open(f'XBTZAR - OB updates - {today}.txt', mode='a') as f:
+    #     await f.write(message + "\n")
+
+def process_message(data):
+    
+    global asks
+    global bids
+    
+    if data['delete_update']:
+        order_id = data['delete_update']['order_id']
+        
+        try:
+            del bids[order_id]
+        except KeyError:
+            pass
+        try:
+            del asks[order_id]
+        except KeyError:
+            pass
+    
+    if data['create_update']:
+        update = data['create_update']
+        price = float(update['price'])
+        volume = float(update['volume'])
+        key = update['order_id']
+        book = bids if update['type'] == 'BID' else asks
+        book[key] = [price, volume]
+        
+    trades = []
+    
+    if data['trade_updates']:
+        for update in data['trade_updates']:
+            update['price'] = float(update['counter']) / float(update['base'])
+            market_order_id = update['maker_order_id']
+            if market_order_id in bids:
+                # update existing order
+                update_existing_order(bids, update=update)
+                trades.append({**update, 'type':'sell'})
+            elif market_order_id in asks:
+                # update existing order
+                update_existing_order(asks, update=update)
+                trades.append({**update, 'type':'buy'})
+                
+    return trades
+
+def update_existing_order(book, update):
+    order_id = update['maker_order_id']
+    existing_order = book[order_id]
+    existing_volume = existing_order[1]
+    new_volume = existing_volume - float(update['base']) # base is the amount in the base asset e.g. BTC in a BTCZAR pair.
+    if new_volume == float('0'):
+        del book[order_id]
+    else:
+        existing_order[1] -= float(update['base'])
+    
+
     
 async def run(pair):
     while True:
@@ -67,7 +159,7 @@ async def run(pair):
                 if message == '""':
                     # Keep alive
                     continue
-                await handle_message(message)
+                await handle_message2(message)
         except ConnectionClosedError:
             print("Connection closed unexpectedly. Reconnecting...")
             await asyncio.sleep(5)  # Wait for a few seconds before attempting to reconnect
@@ -104,3 +196,5 @@ asyncio.run(main())
 #ERRORS RECEIVED:
 # websockets.exceptions.ConnectionClosedError: no close frame received or sent
 #  - "Typically occurs when the WebSocket connection is closed unexpectedly without sending or receiving a close frame."
+
+# websockets.exceptions.InvalidStatusCode: server rejected WebSocket connection: HTTP 502
