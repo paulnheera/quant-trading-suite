@@ -9,6 +9,9 @@ from pylab import mpl, plt
 plt.style.use('seaborn')
 mpl.rcParams['font.family'] = 'serif'
 
+from scripts.data_download import get_binance_data
+from scripts.data_download import get_bybit_data
+
 
 #%% Backtesting Base Class
 class BacktestBase(object):
@@ -54,25 +57,42 @@ class BacktestBase(object):
         '''Retrieves and prepares the data
         '''
         
-        # connect to data base
-        con = sqlite3.connect('data/securities_master.db')
-        c = con.cursor()
+        # # connect to data base
+        # con = sqlite3.connect('data/securities_master.db')
+        # c = con.cursor()
         
-        # get column names
-        query = "PRAGMA table_info(KLINES_1H)"
-        c.execute(query)
-        col_names = [col[1] for col in c.fetchall()] # There is an alternitive way to get column names from the query results themselves.
+        # # get column names
+        # query = "PRAGMA table_info(KLINES_1H)"
+        # c.execute(query)
+        # col_names = [col[1] for col in c.fetchall()] # There is an alternitive way to get column names from the query results themselves.
         
-        #TODO: Import data from diferrent timeframes.
+        # #TODO: Import data from diferrent timeframes.
         
-        # import data
-        query = f"""
-        SELECT * FROM KLINES_1H
-        WHERE SYMBOL = '{self.symbol}'
-        """
-        c.execute(query)
-        raw = pd.DataFrame(c.fetchall(), columns=col_names)
-        raw = raw.set_index('Time')
+        # # import data
+        # query = f"""
+        # SELECT * FROM KLINES_1H
+        # WHERE SYMBOL = '{self.symbol}'
+        # """
+        # c.execute(query)
+        # raw = pd.DataFrame(c.fetchall(), columns=col_names)
+        # raw = raw.set_index('Time')
+        
+        if self.exchange == 'binance':
+            print('Loading Binance data...')
+            raw = get_binance_data(symbol=self.symbol, interval=60,
+                                  start_time='2024-01-01 00:00:00',
+                                  #end_time='2017-12-31 23:59:00',
+                                  verbose=True)
+            raw = raw.set_index('Time')
+        elif self.exchange == 'bybit':
+            print('Loading Bybit data...')
+            raw = get_bybit_data(product_type='linear',
+                                 symbol=self.symbol, interval=60,
+                                 start_time='2024-01-01 00:00:00',
+                                 #end_time='2017-12-31 23:59:00',
+                                 verbose=True)
+            raw = raw.set_index('Time')
+            
         
         self.data = raw ## IMPROVE: SPLIT BETWEEN ALL DATA & AVAILABLE DATA AT CURRENT BAR
         

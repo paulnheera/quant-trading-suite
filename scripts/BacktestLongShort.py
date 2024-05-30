@@ -2,7 +2,7 @@
 
 #%% Libraries
 from scripts.BacktestBase import *
-import talib as ta
+#import talib as ta
 
 #%% BacktestLongShort Class
 
@@ -53,7 +53,7 @@ class BacktestLongShort(BacktestBase):
         data['return'] = data['Close']/ data['Close'].shift(1) - 1
         data['SMA1'] = data['Close'].rolling(SMA1).mean() # For strategy signal
         data['SMA2'] = data['Close'].rolling(SMA2).mean() # For strategy signal
-        data['ADX'] = ta.ADX(data['High'], data['Low'], data['Close']) # Filter indicator
+        #data['ADX'] = ta.ADX(data['High'], data['Low'], data['Close']) # Filter indicator
         
         start_bar = data.index.get_loc(self.start)
         end_bar = data.index.get_loc(self.end)
@@ -289,18 +289,19 @@ class BacktestLongShort(BacktestBase):
 
 if __name__ == '__main__':   
     lsbt = BacktestLongShort(exchange='bybit',
-                             symbol='BTCUSDT',
+                             symbol='WIFUSDT',
                              interval=60,
-                             start='2021-01-01 00:00:00',
-                             end='2022-12-31 12:00:00',
+                             start='2024-04-01 00:00:00',
+                             end='2024-04-30 23:00:00',
                              amount=10000,
-                             ptc=0,
+                             ptc=0.002,
                              enable_stop_orders=False,
                              enable_filter=False,
                              sl=0.04,
                              tp=None)
     
-    lsbt.run_sma_strategy(50, 400)
+    lsbt.run_sma_strategy(50, 200)
+    #lsbt.run_buy_and_hold()
     fig, axs = plt.subplots(2, gridspec_kw={'height_ratios': [2, 1]}, sharex=True)
     lsbt.plot_equity(ax=axs[0])
     lsbt.plot_drawdowns(ax=axs[1])
