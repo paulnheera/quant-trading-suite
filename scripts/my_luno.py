@@ -2,6 +2,7 @@
 
 #%% Libraries
 
+import pandas as pd
 import asyncio # How we interact with websockets using the websockets library.
 from websockets import connect
 from websockets.client import connect as websocket_connect
@@ -82,25 +83,26 @@ async def handle_message2(message): # coroutine function
         
     sequence = new_sequence
     
-    trades = process_message(data)
+    trades, orderbook = process_message(data)
     
     today = datetime.now().date()
     # Save trades
     if trades:
-        async with aiofiles.open(f'XBTZAR - OB updates - {today}.txt', mode='a') as f:
+        async with aiofiles.open(f'XBTZAR - trades - {today}.txt', mode='a') as f:
             await f.write(str(trades) + "\n")
-    
-    # Consolidate order book and save snapshot
-    
-    
-    # Save the message data
-    # async with aiofiles.open(f'XBTZAR - OB updates - {today}.txt', mode='a') as f:
-    #     await f.write(message + "\n")
+            
+    # Save orderbook snapshot
+    async with aiofiles.open(f'XBTZAR - OB snapshots - {today}.txt', mode='a') as f:
+        await f.write(str(orderbook) + "\n")
+
 
 def process_message(data):
     
     global asks
     global bids
+    
+    sequence = data['sequence']
+    timestamp = data['timestamp']
     
     if data['delete_update']:
         order_id = data['delete_update']['order_id']
@@ -119,11 +121,10 @@ def process_message(data):
         price = float(update['price'])
         volume = float(update['volume'])
         key = update['order_id']
-        book = bids if update['type'] == 'BID' else asks
-        book[key] = [price, volume]
+        book = bids if update['type'] == 'BID' else asks # current bids or asks. # point to the original bids/asks list?
+        book[key] = [price, volume] # select the order_id in the bids/asks.
         
     trades = []
-    
     if data['trade_updates']:
         for update in data['trade_updates']:
             update['price'] = float(update['counter']) / float(update['base'])
@@ -137,7 +138,9 @@ def process_message(data):
                 update_existing_order(asks, update=update)
                 trades.append({**update, 'type':'buy'})
                 
-    return trades
+    orderbook_snapshot = consolidate_order_book(depth=10, sequence=sequence, timestamp=timestamp)
+                
+    return trades, orderbook_snapshot
 
 def update_existing_order(book, update):
     order_id = update['maker_order_id']
@@ -148,7 +151,33 @@ def update_existing_order(book, update):
         del book[order_id]
     else:
         existing_order[1] -= float(update['base'])
+        
+def consolidate_order_book(depth=10, sequence=None, timestamp=None):
     
+    # need to get the sequence number.
+    # need to have the timestamp as well.
+    df_asks = pd.DataFrame.from_dict(asks, orient='index', columns=['Price', 'Volume'])
+    df_bids = pd.DataFrame.from_dict(bids, orient='index', columns=['Price', 'Volume'])
+
+    # Group by price and sum the volume
+    grouped_asks = df_asks.groupby('Price', as_index=False)['Volume'].sum()
+    grouped_asks = grouped_asks.sort_values('Price')
+    
+    grouped_bids = df_bids.groupby('Price', as_index=False)['Volume'].sum()
+    grouped_bids = grouped_bids.sort_values('Price')
+
+    consolidated_asks = grouped_asks.nsmallest(depth, 'Price')
+    consolidated_bids = grouped_bids.nsmallest(depth, 'Price')
+    
+    ls_asks = consolidated_asks.to_dict(orient='records')
+    ls_bids = consolidated_bids.to_dict(orient='records')
+    
+    orderbook_snapshot = {"sequence":sequence,
+                          "asks":ls_asks,
+                          "bids":ls_bids,
+                          "timestamp":timestamp}
+    
+    return orderbook_snapshot
 
     
 async def run(pair):
@@ -173,13 +202,16 @@ async def main():
     
 asyncio.run(main())
 
-
+# loop = asyncio.get_event_loop()
+# loop.run_until_complete(main())
 
 ## TODO: Keep stream alive.
 
 #import luno_streams
 
 #TODO:
+# 1. Consolidate the orderbook snapshot
+# 2. Save the snapshots and trades.
 # Implement Error Handling: Implement error handling in the code to gracefully handle disconnections
 # and errors. When the connection is unexpectedly closed, you can catch the `ConnectionClosedError` exception
 # and attempt to reconnect.
