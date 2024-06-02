@@ -167,7 +167,7 @@ def consolidate_order_book(depth=10, sequence=None, timestamp=None):
     grouped_bids = grouped_bids.sort_values('Price')
 
     consolidated_asks = grouped_asks.nsmallest(depth, 'Price')
-    consolidated_bids = grouped_bids.nsmallest(depth, 'Price')
+    consolidated_bids = grouped_bids.nlargest(depth, 'Price')
     
     ls_asks = consolidated_asks.to_dict(orient='records')
     ls_bids = consolidated_bids.to_dict(orient='records')
