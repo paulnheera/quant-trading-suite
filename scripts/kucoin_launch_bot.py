@@ -38,6 +38,7 @@ api_passphrase = config.get('kucoin', 'api_passphrase')
 #%% Connect to API
 marketClient = Market(url='https://api.kucoin.com')
 tradeClient = Trade(key=api_key, secret=api_secret, passphrase=api_passphrase, is_sandbox=False, url='')
+userClient = User(key=api_key, secret=api_secret, passphrase=api_passphrase, is_sandbox=False)
 
 #%% Inputs / Parameters
 
@@ -47,7 +48,7 @@ if len(sys.argv) != 2:
 
 # TODO: Make the below inputs required when the script is run in command prompt or using bash.
 SYMBOL = sys.argv[1]
-AMOUNT = 30 # amount of USDT to trade
+AMOUNT = 9 # amount of USDT to trade
 TAKE_PROFIT = 0.1 # Take profit after a 50% price change
 STOP_LOSS = 0.5
 
@@ -61,10 +62,12 @@ async def main(symbol):
     print(f'   Take Profit: {TAKE_PROFIT}')
     print(f'   Stop Loss: {STOP_LOSS}')
     
-    EXECUTED = False
+    EXECUTED = True
+    HOLDING = True # available
     
     async def deal_msg(msg):
             nonlocal EXECUTED
+            nonlocal HOLDING
                         
             if not EXECUTED:
                 print(f'{current_time()} | INFO | No trades executed.')
@@ -158,6 +161,31 @@ async def main(symbol):
                     print(f'ERROR: {e}')
                 
                 EXECUTED = True
+            
+            if HOLDING == True:
+                
+                # Get balance amount
+                balance = 90 #userClient.get_account_list()
+                
+                # Set take profit (0.2)
+                take_profit = 0.2
+                #take_profit = round(round(take_profit / p) * p, int(abs(math.log10(p))))
+                qty = balance
+                try:
+                    tp_order = tradeClient.create_limit_order(SYMBOL,
+                                                              side='sell',
+                                                              size=str(qty),
+                                                              price=str(take_profit)
+                                                              )
+                    print(f'{current_time()} | INFO | Take profit set at {take_profit}.')
+                    HOLDING = False
+                except Exception as e:
+                    print(f'{current_time()} | INFO | Failed to place take profit limit stop order!')
+                    print(f'ERROR: {e}')
+                    
+            # After a minute has lapsed, set stop loss
+                # how do we determine a minute has lapsed.
+                
                 
             ## Manage Trade
             # Ideas:
@@ -185,6 +213,8 @@ async def main(symbol):
 
     await ws_client.subscribe(f'/market/match:{symbol}')
     await ws_client.subscribe(f'/spotMarket/level2Depth5:{symbol}')
+    
+    #TODO: subscribe to the trading activity topic.
     
     while True:
         await asyncio.sleep(60)
