@@ -39,7 +39,7 @@ FIELDNAMES = [
   "token_price_change_m5"
 ]
 
-def job(token_address):
+async def job(token_address):
     
     url = f'https://api.dexscreener.com/latest/dex/tokens/{token_address}'
     
