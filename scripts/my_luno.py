@@ -3,6 +3,7 @@
 #%% Libraries
 
 import pandas as pd
+import numpy as np
 import asyncio # How we interact with websockets using the websockets library.
 from websockets import connect
 from websockets.client import connect as websocket_connect
@@ -22,7 +23,7 @@ api_secret = config.get('luno', 'api_secret')
 
 #%% 
 sequence = None
-bids = None
+bids = None # dictionary of all the bid orders where id is the key and the list [price, volume] is the value.
 asks = None
 
 async def connect(pair):
@@ -35,8 +36,6 @@ async def connect(pair):
     
     pair = pair.upper()
     url = f"wss://ws.luno.com/api/1/stream/{pair}"
-    
-    #async with connect(url) as websocket: # subscribing to the websocket
     
     print(f'Connecting to {url}...')
     websocket = await websocket_connect(url, max_size=2**21) # create websocket connection object.
@@ -62,8 +61,6 @@ async def connect(pair):
     
     return websocket
     
-    #data = await websocket.recv() # recieves inital data
-    
 async def handle_message(message): # coroutine function
     # print the message received from the websocket connection
     #print(message)
@@ -75,7 +72,7 @@ async def handle_message(message): # coroutine function
 async def handle_message2(message): # coroutine function
     global sequence
 
-    data = json.loads(message)
+    data = json.loads(message) # convert JSON string to dictionary.
     new_sequence = int(data['sequence'])
     
     if new_sequence != sequence + 1:
@@ -104,36 +101,45 @@ def process_message(data):
     sequence = data['sequence']
     timestamp = data['timestamp']
     
+    # Delete
     if data['delete_update']:
         order_id = data['delete_update']['order_id']
         
         try:
             del bids[order_id]
+            print(f"Bid order {order_id} deleted")
         except KeyError:
             pass
         try:
             del asks[order_id]
+            print(f"Ask order {order_id} deleted")
         except KeyError:
             pass
     
+    # Create
     if data['create_update']:
         update = data['create_update']
         price = float(update['price'])
         volume = float(update['volume'])
         key = update['order_id']
         book = bids if update['type'] == 'BID' else asks # current bids or asks. # point to the original bids/asks list?
-        book[key] = [price, volume] # select the order_id in the bids/asks.
-        
+        book[key] = [price, volume] # Add the new order to the appropriate book (bids/asks)
+        if update['type'] == 'BID':
+            print(f'Bid order {key} created')
+        else:
+            print(f'Ask order {key} created')
+    
+    # Trade
     trades = []
     if data['trade_updates']:
         for update in data['trade_updates']:
             update['price'] = float(update['counter']) / float(update['base'])
-            market_order_id = update['maker_order_id']
-            if market_order_id in bids:
+            maker_order_id = update['maker_order_id']
+            if maker_order_id in bids:
                 # update existing order
                 update_existing_order(bids, update=update)
                 trades.append({**update, 'type':'sell'})
-            elif market_order_id in asks:
+            elif maker_order_id in asks:
                 # update existing order
                 update_existing_order(asks, update=update)
                 trades.append({**update, 'type':'buy'})
@@ -147,12 +153,17 @@ def update_existing_order(book, update):
     existing_order = book[order_id]
     existing_volume = existing_order[1]
     new_volume = existing_volume - float(update['base']) # base is the amount in the base asset e.g. BTC in a BTCZAR pair.
+    
     if new_volume == float('0'):
         del book[order_id]
+        print(f'Order {order_id} is filled')
     else:
         existing_order[1] -= float(update['base'])
+        print(f'Order {order_id} to {new_volume} by trade.')
         
 def consolidate_order_book(depth=10, sequence=None, timestamp=None):
+    global asks
+    global bids
     
     # need to get the sequence number.
     # need to have the timestamp as well.
@@ -161,10 +172,10 @@ def consolidate_order_book(depth=10, sequence=None, timestamp=None):
 
     # Group by price and sum the volume
     grouped_asks = df_asks.groupby('Price', as_index=False)['Volume'].sum()
-    grouped_asks = grouped_asks.sort_values('Price')
+    grouped_asks = grouped_asks.sort_values('Price', ascending=True)
     
     grouped_bids = df_bids.groupby('Price', as_index=False)['Volume'].sum()
-    grouped_bids = grouped_bids.sort_values('Price')
+    grouped_bids = grouped_bids.sort_values('Price', ascending=False)
 
     consolidated_asks = grouped_asks.nsmallest(depth, 'Price')
     consolidated_bids = grouped_bids.nlargest(depth, 'Price')
