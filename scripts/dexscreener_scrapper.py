@@ -1,3 +1,4 @@
+import pandas as pd
 import asyncio
 import websockets
 import json
@@ -38,8 +39,11 @@ FIELDNAMES = [
     "token_price_change_m5"
 ]
 
-async def job(token_address):
-    url = f'https://api.dexscreener.com/latest/dex/tokens/{token_address}'
+async def get_latest(token_address):
+    """
+    Collects data at a point in time from the dexscreener api.
+    """
+    url = f'https://api.dexscreener.io/latest/dex/tokens/{token_address}'
     
     response = requests.get(url)
     data = response.json()
@@ -49,13 +53,15 @@ async def job(token_address):
     for pair in pairs:
         timestamp = int(time.time())
 
-        chain_id = pair["chainId"]
-        dex_id = pair["dexId"]
-        pair_address = pair["pairAddress"]
+        chain_id = pair["chainId"] # solana
+        dex_id = pair["dexId"] # raydium 
+        pair_address = pair["pairAddress"] # x0XX
        
         token_address = pair["baseToken"]["address"]
         token_name = pair["baseToken"]["name"]
         token_symbol = pair["baseToken"]["symbol"]
+        
+        # Token Transactions
         token_txns = pair["txns"]
        
         token_m5_buys = token_txns["m5"]["buys"]
@@ -63,23 +69,18 @@ async def job(token_address):
        
         token_h1_buys = token_txns["h1"]["buys"]
         token_h1_sells = token_txns["h1"]["sells"]
+        
+        token_h6_buys = token_txns["h6"]["buys"]
+        token_h6_sells = token_txns["h6"]["sells"]
        
-        token_h1_to_m5_buys = round(token_m5_buys * 12 / token_h1_buys, 2) if token_h1_buys else None
-       
+        # Other Info
         token_liquidity = pair.get("liquidity", {}).get("usd")
-        token_market_cap = pair.get("marketCap")
+        token_fdv = pair.get("fdv") # Fully Diluted Value
        
-        token_created_at_raw = pair.get("pairCreatedAt")
-        token_created_at = datetime.utcfromtimestamp(token_created_at_raw / 1000) if token_created_at_raw else None
-        token_created_since = round((datetime.utcnow() - token_created_at).total_seconds() / 60, 2) if token_created_at else None
-           
-        token_eti = pair.get("ear", False) # What is ear?
-        token_header = pair.get("profile", {}).get("header", False) # What is the header
-        token_website = pair.get("profile", {}).get("website", False)
-        token_twitter = pair.get("profile", {}).get("twitter", False)
-        token_links = pair.get("profile", {}).get("linkCount", False)
-        token_img_key = pair.get("profit", {}).get("imgKey", False)
-       
+        token_created_at = pair.get("pairCreatedAt")
+        
+        # Price Info
+        token_price_native = pair["priceNative"]
         token_price_usd = pair["priceUsd"]
         token_price_change_h24 = pair["priceChange"]["h24"]
         token_price_change_h6 = pair["priceChange"]["h6"]
@@ -97,18 +98,13 @@ async def job(token_address):
             token_m5_buys, 
             token_m5_sells, 
             token_h1_buys, 
-            token_h1_sells, 
-            token_h1_to_m5_buys, 
+            token_h1_sells,
+            token_h6_buys, 
+            token_h6_sells,
             token_liquidity, 
-            token_market_cap, 
-            token_created_at, 
-            token_created_since, 
-            token_eti,
-            token_header, 
-            token_website,
-            token_twitter, 
-            token_links, 
-            token_img_key,
+            token_fdv,
+            token_created_at,
+            token_price_native,
             token_price_usd,
             token_price_change_h24, 
             token_price_change_h6, 
@@ -124,7 +120,11 @@ async def job(token_address):
             STR_VALUES = [str(value) for value in VALUES]
             await f.write(';'.join(STR_VALUES) + '\n')
     
-async def dexscreener_scraper():
+async def stream_new_tokens():
+    """
+    Streams the 'New Pairs' page on Dexscreener, recording new listings.
+
+    """
     headers = {
         'Pragma': 'no-cache',
         'Origin': 'https://dexscreener.com',
@@ -173,20 +173,21 @@ async def handle_message(msg):
         pairs = message["pairs"]
         pair = pairs[0]
         
-        timestamp = int(time.time())
         # PAIR DATA
+        timestamp = int(time.time())
+
         chain_id = pair["chainId"]
         dex_id = pair["dexId"]
         pair_address = pair["pairAddress"]
        
         token_address = pair["baseToken"]["address"]
-        
         if prev_token_address == token_address:
             return
-        
         #TODO: Remove special characters in the token name or symbol
         token_name = pair["baseToken"]["name"]
         token_symbol = pair["baseToken"]["symbol"]
+        
+        # Token Transactions
         token_txns = pair["txns"]
         
         token_m5_buys = token_txns["m5"]["buys"]
@@ -195,22 +196,17 @@ async def handle_message(msg):
         token_h1_buys = token_txns["h1"]["buys"]
         token_h1_sells = token_txns["h1"]["sells"]
         
-        token_h1_to_m5_buys = round(token_m5_buys * 12 / token_h1_buys, 2) if token_h1_buys else None
+        token_h6_buys = token_txns["h6"]["buys"]
+        token_h6_sells = token_txns["h6"]["sells"]
         
+        # Other Info
         token_liquidity = pair.get("liquidity", {}).get("usd")
-        token_market_cap = pair.get("marketCap")
+        token_fdv = pair.get("fdv") # Fully Diluted Value
         
-        token_created_at_raw = pair.get("pairCreatedAt")
-        token_created_at = datetime.utcfromtimestamp(token_created_at_raw / 1000) if token_created_at_raw else None
-        token_created_since = round((datetime.utcnow() - token_created_at).total_seconds() / 60, 2) if token_created_at else None
+        token_created_at = pair.get("pairCreatedAt")
         
-        token_eti = pair.get("ear", False)  # What is ear?
-        token_header = pair.get("profile", {}).get("header", False)  # What is the header
-        token_website = pair.get("profile", {}).get("website", False)
-        token_twitter = pair.get("profile", {}).get("twitter", False)
-        token_links = pair.get("profile", {}).get("linkCount", False)
-        token_img_key = pair.get("profit", {}).get("imgKey", False)
-        
+        # Price Info
+        token_price_native = pair["priceNative"]
         token_price_usd = pair["priceUsd"]
         token_price_change_h24 = pair["priceChange"]["h24"]
         token_price_change_h6 = pair["priceChange"]["h6"]
@@ -228,18 +224,13 @@ async def handle_message(msg):
             token_m5_buys, 
             token_m5_sells, 
             token_h1_buys, 
-            token_h1_sells, 
-            token_h1_to_m5_buys, 
+            token_h1_sells,
+            token_h6_buys, 
+            token_h6_sells,
             token_liquidity, 
-            token_market_cap, 
-            token_created_at, 
-            token_created_since, 
-            token_eti,
-            token_header, 
-            token_website,
-            token_twitter, 
-            token_links, 
-            token_img_key,
+            token_fdv,
+            token_created_at,
+            token_price_native,
             token_price_usd,
             token_price_change_h24, 
             token_price_change_h6, 
@@ -247,7 +238,7 @@ async def handle_message(msg):
             token_price_change_m5
         ]
         
-        print(f"{token_name} created at {token_created_at}")
+        print(f"New Token: {token_name}, created at {pd.to_datetime(token_created_at,unit='ms')}")
         
         # Save data to text file
         today = datetime.now().date()
@@ -255,10 +246,11 @@ async def handle_message(msg):
             STR_VALUES = [str(value) for value in VALUES]
             await f.write(';'.join(STR_VALUES) + '\n')
             
+        # Update token address pointer
         prev_token_address = token_address
         
         # Schedule the collection of future data
-        schedule.every(5).minutes.do(lambda: asyncio.run_coroutine_threadsafe(job(token_address), asyncio.get_event_loop()))
+        schedule.every(1).hours.do(lambda: asyncio.run_coroutine_threadsafe(get_latest(token_address), asyncio.get_event_loop()))
         print(f'Data collection for {token_name} has been scheduled...')
 
 def run_schedule():
@@ -269,4 +261,4 @@ def run_schedule():
 if __name__ == '__main__':
     # Start the schedule in a separate thread
     threading.Thread(target=run_schedule).start()
-    asyncio.run(dexscreener_scraper())
+    asyncio.run(stream_new_tokens())
