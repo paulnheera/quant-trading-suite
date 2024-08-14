@@ -59,6 +59,7 @@ async def get_latest(token_address):
        
         token_address = pair["baseToken"]["address"]
         token_name = pair["baseToken"]["name"]
+        token_name = token_name.encode('ascii','ignore').decode('ascii') # Removes non-ASCII charaters
         token_symbol = pair["baseToken"]["symbol"]
         
         # Token Transactions
@@ -80,7 +81,7 @@ async def get_latest(token_address):
         token_created_at = pair.get("pairCreatedAt")
         
         # Price Info
-        token_price_native = pair["priceNative"]
+        # token_price_native = pair["priceNative"]
         token_price_usd = pair["priceUsd"]
         token_price_change_h24 = pair["priceChange"]["h24"]
         token_price_change_h6 = pair["priceChange"]["h6"]
@@ -104,7 +105,7 @@ async def get_latest(token_address):
             token_liquidity, 
             token_fdv,
             token_created_at,
-            token_price_native,
+            # token_price_native,
             token_price_usd,
             token_price_change_h24, 
             token_price_change_h6, 
@@ -116,7 +117,7 @@ async def get_latest(token_address):
         
         # Save data to text file
         today = datetime.now().date()
-        async with aiofiles.open(f"dexscreener_listings - {today}.txt", "a") as f:
+        async with aiofiles.open(f"dexscreener_listings - {today}.txt", "a",encoding="utf-8") as f:
             STR_VALUES = [str(value) for value in VALUES]
             await f.write(';'.join(STR_VALUES) + '\n')
     
@@ -160,7 +161,6 @@ async def stream_new_tokens():
             await asyncio.sleep(5)
 
 prev_token_address = None
-
 async def handle_message(msg):
     global prev_token_address
     
@@ -185,6 +185,7 @@ async def handle_message(msg):
             return
         #TODO: Remove special characters in the token name or symbol
         token_name = pair["baseToken"]["name"]
+        token_name = token_name.encode('ascii','ignore').decode('ascii') # Removes non-ASCII charaters
         token_symbol = pair["baseToken"]["symbol"]
         
         # Token Transactions
@@ -206,7 +207,7 @@ async def handle_message(msg):
         token_created_at = pair.get("pairCreatedAt")
         
         # Price Info
-        token_price_native = pair["priceNative"]
+        # token_price_native = pair["priceNative"]
         token_price_usd = pair["priceUsd"]
         token_price_change_h24 = pair["priceChange"]["h24"]
         token_price_change_h6 = pair["priceChange"]["h6"]
@@ -230,7 +231,7 @@ async def handle_message(msg):
             token_liquidity, 
             token_fdv,
             token_created_at,
-            token_price_native,
+            # token_price_native,
             token_price_usd,
             token_price_change_h24, 
             token_price_change_h6, 
@@ -242,7 +243,7 @@ async def handle_message(msg):
         
         # Save data to text file
         today = datetime.now().date()
-        async with aiofiles.open(f"dexscreener_listings - {today}.txt", "a") as f:
+        async with aiofiles.open(f"dexscreener_listings - {today}.txt", "a", encoding="utf-8") as f:
             STR_VALUES = [str(value) for value in VALUES]
             await f.write(';'.join(STR_VALUES) + '\n')
             
