@@ -39,10 +39,23 @@ FIELDNAMES = [
     "token_price_change_m5"
 ]
 
+request_counters = {} # Dictionary to track request counts per token
+
 async def get_latest(token_address):
     """
     Collects data at a point in time from the dexscreener api.
     """
+    
+    global request_counters
+    
+    # Increment the counter for this token
+    request_counters[token_address] = request_counters.get(token_address, 0) + 1
+    
+    if request_counters[token_address] > 24:
+        # Stop the job for this token after 24 requests
+        print(f"Stopping data collection for {token_address} after 24 requests.")
+        return schedule.CancelJob
+    
     url = f'https://api.dexscreener.io/latest/dex/tokens/{token_address}'
     
     response = requests.get(url)
@@ -113,13 +126,15 @@ async def get_latest(token_address):
             token_price_change_m5
         ]
         
-        print(f"{token_name} data collected!")
+        
         
         # Save data to text file
         today = datetime.now().date()
         async with aiofiles.open(f"dexscreener_listings - {today}.txt", "a",encoding="utf-8") as f:
             STR_VALUES = [str(value) for value in VALUES]
             await f.write(';'.join(STR_VALUES) + '\n')
+            
+    print(f"{token_name} data collected!")
     
 async def stream_new_tokens():
     """
@@ -263,3 +278,8 @@ if __name__ == '__main__':
     # Start the schedule in a separate thread
     threading.Thread(target=run_schedule).start()
     asyncio.run(stream_new_tokens())
+    
+"""
+Get the get_latest job for each symbol/token needs to run for a maximum of 24 hours. i.e. only 24 requests of 
+data are made after listing.
+"""
