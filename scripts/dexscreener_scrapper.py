@@ -51,9 +51,9 @@ async def get_latest(token_address):
     # Increment the counter for this token
     request_counters[token_address] = request_counters.get(token_address, 0) + 1
     
-    if request_counters[token_address] > 24:
-        # Stop the job for this token after 24 requests
-        print(f"Stopping data collection for {token_address} after 24 requests.")
+    if request_counters[token_address] > 48:
+        # Stop the job for this token after 48 requests
+        print(f"Stopping data collection for {token_address} after 48 requests.")
         return schedule.CancelJob
     
     url = f'https://api.dexscreener.io/latest/dex/tokens/{token_address}'
@@ -78,52 +78,54 @@ async def get_latest(token_address):
         # Token Transactions
         token_txns = pair["txns"]
        
-        token_m5_buys = token_txns["m5"]["buys"]
-        token_m5_sells = token_txns["m5"]["sells"]
+        token_m5_buys = token_txns["m5"].get("buys", 0)
+        token_m5_sells = token_txns["m5"].get("sells", 0)
        
-        token_h1_buys = token_txns["h1"]["buys"]
-        token_h1_sells = token_txns["h1"]["sells"]
+        token_h1_buys = token_txns["h1"].get("buys", 0)
+        token_h1_sells = token_txns["h1"].get("sells", 0)
         
-        token_h6_buys = token_txns["h6"]["buys"]
-        token_h6_sells = token_txns["h6"]["sells"]
+        token_h6_buys = token_txns["h6"].get("buys", 0)
+        token_h6_sells = token_txns["h6"].get("sells", 0)
        
-        # Other Info
-        token_liquidity = pair.get("liquidity", {}).get("usd")
-        token_fdv = pair.get("fdv") # Fully Diluted Value
+        # Other Information
+        token_liquidity = pair.get("liquidity", {}).get("usd", 0)
+        token_fdv = pair.get("fdv", 0) # Fully Diluted Value
        
-        token_created_at = pair.get("pairCreatedAt")
+        token_created_at = pair.get("pairCreatedAt", 0)
         
         # Price Info
-        # token_price_native = pair["priceNative"]
-        token_price_usd = pair["priceUsd"]
-        token_price_change_h24 = pair["priceChange"]["h24"]
-        token_price_change_h6 = pair["priceChange"]["h6"]
-        token_price_change_h1 = pair["priceChange"]["h1"]
-        token_price_change_m5 = pair["priceChange"]["m5"]
+        token_price_native = pair.get("priceNative", 0)
+        token_price_usd = pair.get("priceUsd", 0)
+        token_price_change_h24 = pair["priceChange"].get("h24", 0)
+        token_price_change_h6 = pair["priceChange"].get("h6", 0)
+        token_price_change_h1 = pair["priceChange"].get("h1", 0)
+        token_price_change_m5 = pair["priceChange"].get("m5", 0)
            
+        
+        # Encapsulate each value in double quotes and handle empty values as "0" or other defaults
         VALUES = [
-            timestamp,
-            chain_id, 
-            dex_id, 
-            pair_address, 
-            token_address, 
-            token_name, 
-            token_symbol, 
-            token_m5_buys, 
-            token_m5_sells, 
-            token_h1_buys, 
-            token_h1_sells,
-            token_h6_buys, 
-            token_h6_sells,
-            token_liquidity, 
-            token_fdv,
-            token_created_at,
-            # token_price_native,
-            token_price_usd,
-            token_price_change_h24, 
-            token_price_change_h6, 
-            token_price_change_h1, 
-            token_price_change_m5
+            f'"{timestamp}"',
+            f'"{chain_id}"', 
+            f'"{dex_id}"', 
+            f'"{pair_address}"', 
+            f'"{token_address}"', 
+            #f'"{token_name}"', 
+            f'"{token_symbol}"', 
+            f'"{token_m5_buys}"', 
+            f'"{token_m5_sells}"', 
+            f'"{token_h1_buys}"', 
+            f'"{token_h1_sells}"',
+            f'"{token_h6_buys}"', 
+            f'"{token_h6_sells}"',
+            f'"{token_liquidity}"', 
+            f'"{token_fdv}"',
+            f'"{token_created_at}"',
+            f'"{token_price_native}"',
+            f'"{token_price_usd}"',
+            f'"{token_price_change_h24}"', 
+            f'"{token_price_change_h6}"', 
+            f'"{token_price_change_h1}"', 
+            f'"{token_price_change_m5}"'
         ]
         
         
@@ -141,20 +143,21 @@ async def stream_new_tokens():
     Streams the 'New Pairs' page on Dexscreener, recording new listings.
 
     """
+    
     headers = {
-        'Pragma': 'no-cache',
-        'Origin': 'https://dexscreener.com',
-        'Accept-Language': 'en-US,en;q=0.9',
-        'Sec-WebSocket-Key': 'd87c5XMvQA1y1Eet867HFQ==',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36',
         'Upgrade': 'websocket',
+        'Origin': 'https://dexscreener.com',
         'Cache-Control': 'no-cache',
+        'Accept-Language': 'en-US,en;q=0.9',
+        'Pragma': 'no-cache',
         'Connection': 'Upgrade',
+        'Sec-WebSocket-Key': 'Hp4FAZ/fjUQ/6fO/qvotoA==',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36',
         'Sec-WebSocket-Version': '13',
         'Sec-WebSocket-Extensions': 'permessage-deflate; client_max_window_bits',
     }
     
-    url = "wss://io.dexscreener.com/dex/screener/pairs/m5/1?rankBy[key]=pairAge&rankBy[order]=asc&filters[chainIds][0]=solana"
+    url = "wss://io.dexscreener.com/dex/screener/v4/pairs/h24/1?rankBy[key]=pairAge&rankBy[order]=asc"
     
     while True:
         try:
@@ -282,4 +285,29 @@ if __name__ == '__main__':
 """
 Get the get_latest job for each symbol/token needs to run for a maximum of 24 hours. i.e. only 24 requests of 
 data are made after listing.
+
+- when reading token names and token symbol we should ignore any new line characters.
+- maybe encapsulate each value in double quotation marks.
 """
+
+"""
+Issues:
+1. token names/symbols with new line characters (or something of that sort i.e. big white spaces)
+    e.g. "BabyWolf ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ 3jWrY7tcyUo9tV82h1Rh2irYke4QVaybNhxdLXtipump"
+    e.g. "Make Degens Money Again ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ GmgLZbHUiEU5tUj2KJTRbgP5yqnkmD7xKRCEsS6Kpump"
+    
+2. there are some lines with 44 columns/values (These need to be identified)
+3. Some lines have missing price_change values leading to less columns or joining with the next record.
+4. For some reason this pair of wrapped SOL is picked up: FpCMFDFGYotvufJ7HrFHsWEiiQCGbkLCtwHiDnh7o28Q.
+5. Some values could be written to the file at the same time as another pair causing the values to be mixed up. Is this a 
+possibility???
+ -- e.g. C9KGpvkfpnE3e6pqgZePPh6ib1aTBrSVtNqeWMxqpump;CULT
+ -- e.g. Et5kbVjcniEn5D8X2gKHzTVKBijx2M92Bg6aCWrX;CATO
+ 
+6. 1723365667;solana;raydium;8Re9oJLHtrXrj6LfG7W2ugmvCygXwSgovSpqkUYhEjm2;9kskv67c4URmBKhpWLsL1UZZjeR8KYm3sRCrh9jBpump;robber dog;robber;1;7;74;103;440;472;43735.79;151712;1723301659000;0.0001517;145;-56.06;-26.48;-16
+-- the -16 of the above line was not followed with a new line character and was joint to the next record (for some reason.)
+7. Some records/lines are repeated i.e. there are duplicates of the exact same lines.
+    -- e.g. 1723365686;solana;fluxbeam;7CJ1gSHur78bnrsqMPDvuEmMMH74Zkok15MYzSYBMEbn;4XjbB8QprYnycsFtHcjbHHkB3ytPGCyAcAouN8BUpump;That's fire;Fire;0;0;0;0;0;0;0.06;62522;1723301249000;0.00006633;-98.64;0;0;0
+8. Need to ignore WSOL records that appear as new listings.
+"""
+
