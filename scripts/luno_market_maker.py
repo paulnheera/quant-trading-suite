@@ -7,6 +7,7 @@
 - How does this market maker perform in its current form?
 - Add error handling
 - Add websocket stream to listen to when orders are filled. (for logging info)
+- Will need to track performance
 """
 
 import time
@@ -45,9 +46,9 @@ def get_order_book():
     
     return {'best_bid':best_bid, 'best_ask':best_ask}
 
-def place_order(side, price, size):
+def place_order(side, price, size, client_order_id):
     
-    return lunoClient.post_limit_order(pair=PAIR, price=price, type=side, volume=size)
+    return lunoClient.post_limit_order(pair=PAIR, price=price, type=side, volume=size, client_order_id=client_order_id)
     
     
 def cancel_order(order_id):
@@ -58,6 +59,7 @@ def cancel_order(order_id):
 def market_making_bot():
     print("Starting Luno Market Maker Bot...")
     
+    order_counter = 1
     
     while True:
         try:
@@ -70,9 +72,14 @@ def market_making_bot():
             ask_price = round(mid_price * (1 + SPREAD), 2)
             
             # Step 3: Place new limit orders
-            bid_order = place_order("BUY", bid_price, ORDER_SIZE)
-            ask_order = place_order("SELL", ask_price, ORDER_SIZE)
+            bid_order = place_order("BUY", bid_price, ORDER_SIZE, client_order_id=f'mm_b_{order_counter}')
+            ask_order = place_order("SELL", ask_price, ORDER_SIZE, client_order_id=f'mm_a_{order_counter}')
             
+            
+            order_counter += 1
+            
+            print(f'DEBUG | Bid Order Id: {bid_order["order_id"]}')
+            print(f'DEBUG | Ask Order Id: {ask_order["order_id"]}')
             print(f"Placed orders: Buy @ {bid_price}, Sell @ {ask_price}")
             
             # Step 4: Wait and then cancel unfilled orders
