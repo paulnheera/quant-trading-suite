@@ -87,7 +87,7 @@ def get_bybit_data(product_type, symbol, interval, start_time, end_time=None, li
             diff = int( (end_ts - c_ts) / (interval*60*1000) )    # divide by 60 to get to mins, divide by interval to get to frequency (in mins)
             
             if verbose:
-                print("Downloading data from {}".format(pd.to_datetime(c_ts, unit='ms')))
+                print("Downloading {} data from {}".format(symbol, pd.to_datetime(c_ts, unit='ms')))
                 print("{} bars remaining...".format(diff))
                 print("-"*55)
             
@@ -152,7 +152,7 @@ if __name__ == '__main__':
                           verbose=True)
     
     data = get_bybit_data(product_type='linear', symbol='BTCUSDT', interval=60,
-                          start_time='2021-01-01 00:00:00', limit=2000,
+                          start_time='2021-01-01 00:00:00', limit=500,
                           verbose=True)
     
     data = get_bybit_data(product_type='linear', symbol='MCUSDT', interval=60,
@@ -243,9 +243,9 @@ def get_binance_data(symbol, interval, start_time, end_time=None, product_type=N
     return df
 
 if __name__ == '__main__':
-    data = get_binance_data(symbol='BTCUSDT', interval=60,
+    data = get_binance_data(symbol='SOLUSDT', interval=1440,
                           start_time='2017-01-01 00:00:00',
-                          end_time='2017-12-31 23:59:00',
+                          #end_time='2017-12-31 23:59:00',
                           verbose=True)
 
 #%%
