@@ -3,6 +3,15 @@
 #***************************************************
 
 
+"""
+ - (1) Python might not be recognizing scripts as a package.
+ - (1) Add the project directory to sys.path
+"""
+
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 #%% Libraries
 import pandas as pd
 import numpy as np
@@ -190,9 +199,9 @@ def execute_trades(rebalance_orders):
     """ Execute the necessary orders to rebalance the portfolio on the exchange."""
     for pair, qty in rebalance_orders.items():
         if qty > 0:
-            post_market_order(pair=pair, side=qty, side='buy')
+            post_market_order(pair=pair, size=qty, side='buy')
         elif qty < 0:
-            post_market_order(pair=pair, side=qty, side='sell')
+            post_market_order(pair=pair, size=qty, side='sell')
         else:
             # Do nothing
             pass
@@ -204,7 +213,9 @@ def on_exit():
 def main():
     """ Main execution loop for cross-sectional momentum strategy."""
     print(f'{datetime.now()} | Starting process...')
+    print(f'Starting portfolio value: {round(get_portfolio_value(),2)}')
     print('-'*55)
+    
     
     # Get initial data
     
@@ -243,6 +254,10 @@ def main():
             execute_trades(rebalance_orders)
             print(f'{datetime.now()} Rebalancing complete.')
             print('-'*55)
+            
+
+if __name__ == "__main__":
+    main()
             
             
             
