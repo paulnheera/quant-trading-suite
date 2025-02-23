@@ -4,12 +4,14 @@
 
 
 """
- - (1) Python might not be recognizing scripts as a package.
- - (1) Add the project directory to sys.path
+ - (2) Add more functionality for leverage management
+ - Include account monitor in the script logging info to show PnL / Total Value etc.
+ - Run code only on new bar. 
 """
 
 import sys
 import os
+import math
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 #%% Libraries
@@ -33,8 +35,8 @@ conf_file = 'algo_trading.cfg'
 config = ConfigParser()
 config.read(conf_file)
 
-API_KEY = config.get('valr', 'api_key')
-API_SECRET = config.get('valr', 'api_secret')
+API_KEY = config.get('valr2', 'api_key')
+API_SECRET = config.get('valr2', 'api_secret')
 
 #%% Connect to APIs
 valrClient = Client(api_key=API_KEY, 
@@ -45,7 +47,23 @@ LOOKBACK = 24*7 # The number of hours to calculate momentum lookback over
 REBAL_FREQ = '6H'
 UNIVERSE = ['BTCUSDT', 'ETHUSDT', 'XRPUSDT', 'DOGEUSDT', 'SOLUSDT', 'AVAXUSDT']
 UNIVERSE_PERP = [pair + "PERP" for pair in UNIVERSE]
+LEVERAGE = 2
+
 #%% Functions
+def apply_qty_filters(raw_qty, qty_min, qty_dcp):
+    """
+    Rounds down raw_qty to a specified decimal place and 
+    applies a minimum quantity filter.
+    """
+    # First round down
+    qty = math.floor((raw_qty / 10**(-qty_dcp))) * 10**(-qty_dcp)
+    
+    # Apply minimum quantity filter
+    if abs(qty) < qty_min:
+        qty = 0
+        
+    return qty
+    
 def fetch_symbol_data(pair, start_time, results):
     """Fetches Bybit data for a single symbol and stores it in results dict."""
     try:
@@ -102,7 +120,7 @@ def generate_target_portfolio(target_wghts):
     market = valrClient.get_market_summary()
     prices = {q['currencyPair'].replace("PERP",""):float(q['bidPrice']) for q in market if q['currencyPair'] in UNIVERSE_PERP}
     
-    target_exp = {p: total_value * w for p,w in target_wghts.items()}
+    target_exp = {p: total_value * w * LEVERAGE for p,w in target_wghts.items()}
     
     target_qty = {p: target_exp[p] / prices[p] for p in target_exp if p in prices}
     
@@ -157,14 +175,15 @@ def get_positions():
 
 def generate_rebal_orders(curr_positions, target_qty):
     
-    rebalance_orders = {pair:(target_qty[pair] - curr_positions[pair]) for pair in target_qty.keys()}
+    rebalance_orders = {pair:(target_qty[pair] - curr_positions.get(pair,0)) for pair in target_qty.keys()}
     #TODO: Will need consider a union of pairs in both target_qty and curr_positions
+    # i.e. consistent key formatting in both dictionaries.
     
     # round the targer_qty values in accordance with the price filters
     qty_filters_min = {'BTCUSDT':0.0001, 'ETHUSDT':0.001, 'SOLUSDT':0.01, 'DOGEUSDT':6, 'XRPUSDT':2, 'AVAXUSDT':0.03} # minimum base amount
-    dty_filters_dp = {'BTCUSDT':4, 'ETHUSDT':3, 'SOLUSDT':2, 'DOGEUSDT':0, 'XRPUSDT':0, 'AVAXUSDT':2} # decimal places
+    dty_filters_dcp = {'BTCUSDT':4, 'ETHUSDT':3, 'SOLUSDT':2, 'DOGEUSDT':0, 'XRPUSDT':0, 'AVAXUSDT':2} # decimal places
     
-    rebalance_orders = {pair:round(rebalance_orders[pair], dty_filters_dp[pair]) for pair in rebalance_orders}
+    rebalance_orders = {pair:apply_qty_filters(rebalance_orders[pair], qty_filters_min[pair], dty_filters_dcp[pair]) for pair in rebalance_orders}
     
     return rebalance_orders
 
@@ -180,17 +199,15 @@ def post_market_order(pair, side, size, client_order_id=None):
     try:
         res = valrClient.post_market_order(**market_order)
         order_id = res['id']
-        #print(order_id)
     except IncompleteOrderWarning as w:  # HTTP 202 Accepted handling for incomplete orders
         order_id = w.data['id']
-        print(order_id)
+        order = valrClient.get_order_status(pair, order_id=order_id)
+        print(f"Order status: {order}")
+        return order
     except Exception as e:
         print(e)
-        
-    order = valrClient.get_order_status(pair, order_id=order_id)
-    print(f"Order status: {order}")
-    
-    return order
+        # Note! nothing returned if this exception runs.
+        return None
 
 if False:
     order = post_market_order(pair='BTCZARPERP', side='BUY', size=0.0002)
@@ -199,9 +216,9 @@ def execute_trades(rebalance_orders):
     """ Execute the necessary orders to rebalance the portfolio on the exchange."""
     for pair, qty in rebalance_orders.items():
         if qty > 0:
-            post_market_order(pair=pair, size=qty, side='buy')
+            post_market_order(pair=pair, size=abs(qty), side='buy')
         elif qty < 0:
-            post_market_order(pair=pair, size=qty, side='sell')
+            post_market_order(pair=pair, size=abs(qty), side='sell')
         else:
             # Do nothing
             pass
@@ -216,16 +233,25 @@ def main():
     print(f'Starting portfolio value: {round(get_portfolio_value(),2)}')
     print('-'*55)
     
-    
+    current_bar = None
     # Get initial data
     
     while True:
         now = datetime.utcnow()
+        # TODO: Insert Portfolio Updates on the same line, creating a print line only for the print statements below.
+        # i.e. new print lines when the program moves on.
         if now.hour % 6 == 0: # Every 6 hours
-            print(f'{datetime.now()} | Rebalancing ...')
             
             # Fetch latest market data
             data = get_latest_data()
+            
+            if current_bar == data.index[-1]:
+                time.sleep(2) # Need to sleep for a bit in order to avoid hitting API rate limits.
+                continue # The continue keyword is used to end the current iteration in loop.
+            else:
+                current_bar = data.index[-1]
+            
+            print(f'{datetime.now()} | Rebalancing ...')
             
             # Generate target weights
             target_wghts = get_signals(data)
@@ -255,7 +281,7 @@ def main():
             print(f'{datetime.now()} Rebalancing complete.')
             print('-'*55)
             
-
+            
 if __name__ == "__main__":
     main()
             
