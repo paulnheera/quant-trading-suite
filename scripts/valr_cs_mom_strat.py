@@ -240,6 +240,7 @@ def main():
         now = datetime.utcnow()
         # TODO: Insert Portfolio Updates on the same line, creating a print line only for the print statements below.
         # i.e. new print lines when the program moves on.
+        print(current_bar)
         
         # TODO: We need some print statements here, to let us know the status of the program.
         if now.hour % 6 == 0: # Every 6 hours
@@ -254,6 +255,8 @@ def main():
                 current_bar = data.index[-1]
             
             print(f'{datetime.now()} | Rebalancing ...')
+            print('Latest Data:')
+            print(data.tail())
             
             # Generate target weights
             target_wghts = get_signals(data)
