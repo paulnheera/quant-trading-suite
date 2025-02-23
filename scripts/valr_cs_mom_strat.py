@@ -216,9 +216,9 @@ def execute_trades(rebalance_orders):
     """ Execute the necessary orders to rebalance the portfolio on the exchange."""
     for pair, qty in rebalance_orders.items():
         if qty > 0:
-            post_market_order(pair=pair, size=abs(qty), side='buy')
+            post_market_order(pair=pair+'PERP', size=abs(qty), side='buy')
         elif qty < 0:
-            post_market_order(pair=pair, size=abs(qty), side='sell')
+            post_market_order(pair=pair+'PERP', size=abs(qty), side='sell')
         else:
             # Do nothing
             pass
@@ -240,6 +240,8 @@ def main():
         now = datetime.utcnow()
         # TODO: Insert Portfolio Updates on the same line, creating a print line only for the print statements below.
         # i.e. new print lines when the program moves on.
+        
+        # TODO: We need some print statements here, to let us know the status of the program.
         if now.hour % 6 == 0: # Every 6 hours
             
             # Fetch latest market data
