@@ -233,28 +233,24 @@ def main():
     print(f'Starting portfolio value: {round(get_portfolio_value(),2)}')
     print('-'*55)
     
-    current_bar = None
+    last_executed_hour = None # Sotre last executed hour
     # Get initial data
     
     while True:
         now = datetime.utcnow()
+        curr_hour = now.replace(minute=0,second=0, microsecond=0) # Round down to the start of the hour
+        
         # TODO: Insert Portfolio Updates on the same line, creating a print line only for the print statements below.
         # i.e. new print lines when the program moves on.
-        print(current_bar)
         
         # TODO: We need some print statements here, to let us know the status of the program.
-        if now.hour % 6 == 0: # Every 6 hours
+        if now.hour % 6 == 0 and last_executed_hour != curr_hour: # Every 6 hours
+            last_executed_hour = curr_hour # UPdate last executed time
+            
+            print(f'{datetime.now()} | Rebalancing ...')
             
             # Fetch latest market data
             data = get_latest_data()
-            
-            if current_bar == data.index[-1]:
-                time.sleep(2) # Need to sleep for a bit in order to avoid hitting API rate limits.
-                continue # The continue keyword is used to end the current iteration in loop.
-            else:
-                current_bar = data.index[-1]
-            
-            print(f'{datetime.now()} | Rebalancing ...')
             print('Latest Data:')
             print(data.tail())
             
