@@ -4,10 +4,8 @@
 
 """
 TODO:
-    - storing historical trades info (executed trades info) - get historical trades instead of storing.
     - create function to kill all positions.
     - Position entering phase / Position closing phase.
-    - place limit order at the mid price - to increase chances of fast execution.
     - Add feature to check BTC amount and BTCUSDTPERP position - these should be equal at all times.
     - Add functionality to continue the process even when there are no messages coming through.
         - e.g. update orders for better chance of executing (update stale orders)
@@ -42,7 +40,7 @@ WSS_URL = 'wss://api.valr.com/ws/account'
 #%% GLOBAL VARIABLES
 usdt_initial_bal = None
 iteration_no = None
-phase = -1 #  (-1="decumulating", 0="holding", 1="accumulating")
+phase = -1 #  (-1="Unwinding", 0="holding", 1="accumulating")
 
 #%% CONNECT TO API
 valrClient = Client(api_key=API_KEY, 
@@ -98,10 +96,8 @@ def place_limit_order(pair, side, price, size, client_order_id=None):
     try:
         res = valrClient.post_limit_order(**limit_order)
         order_id = res['id']
-        print(order_id)
     except IncompleteOrderWarning as w:  # HTTP 202 Accepted handling for incomplete orders
         order_id = w.data['id']
-        print(order_id)
     except Exception as e:
         print(e)
         
@@ -140,9 +136,13 @@ async def cancel_stale_orders(max_age_seconds=30):
         open_orders = valrClient.get_all_open_orders()
         bid , ask = get_bid_ask()
         
+        # Check and cancel orders individually
         for order in open_orders:
-            if ask < float(order['price'])
+            if ask < float(order['price']) and order['side'] =='sell':
+                # Revise order price to lower than ask but higher than bid.
+                pass
         
+        # If there are no open orders place new orders
         if len(open_orders) == 0:
             # Place an order
             if phase == 1:
@@ -150,16 +150,24 @@ async def cancel_stale_orders(max_age_seconds=30):
                     # Place limit order buy
                     bid , ask = get_bid_ask()
                     mid_price = round((bid + ask) / 2,0)
-                    limit_order = place_limit_order(pair='BTCUSDT', side='buy', price=mid_price, size=0.0001)
+                    limit_order = place_limit_order(pair='BTCUSDT', side='buy', price=mid_price, size=trade_qty)
+                    open_orders.append(limit_order)
+                    print("Added order to open_orders")
             if phase == -1:
                  if btc_avail_bal >= trade_qty:
                      # Place limit order buy
                      bid , ask = get_bid_ask()
                      mid_price = round((bid + ask) / 2,0)
-                     limit_order = place_limit_order(pair='BTCUSDT', side='sell', price=mid_price, size=0.0001)
+                     limit_order = place_limit_order(pair='BTCUSDT', side='sell', price=mid_price, size=trade_qty)
+                     open_orders.append(limit_order)
+                     print("Added order to open_orders")
         
     except Exception as e:
         print(f'Error cancelling stale orders: {e}')
+
+async def get_futures_funding():
+    """ Calculates the total funding payemnts accumulated so far, and the costs of this cycle."""
+    pass
     
 def handle_message(msg_raw):
     global usdt_avail_bal
@@ -199,8 +207,9 @@ def handle_message(msg_raw):
             
             if total_bal == 0:
                 # Switch to accumulating mode/phase
+                phase = 1 # Set phase to 1
                 print(f'SWITCHING TO ACCUMULATING MODE!') # TODO: PROBLEM: This will part will run even when starting a new process. because btc will be zero.
-                #phase = 1
+                
         
         # Only run limt buy orders on BALANCE_UPDATE
         if phase == 1: # Switch off when the system is in the closing positions phase
@@ -208,20 +217,23 @@ def handle_message(msg_raw):
                 # Place limit order buy
                 bid , ask = get_bid_ask()
                 mid_price = round((bid + ask) / 2,0)
-                limit_order = place_limit_order(pair='BTCUSDT', side='buy', price=mid_price, size=0.0001)
+                limit_order = place_limit_order(pair='BTCUSDT', side='buy', price=mid_price, size=trade_qty)
+                open_orders.append(limit_order)
+                print("Added order to open_orders")
                 
                 
         if phase == -1:
              if btc_avail_bal >= trade_qty and len(open_orders) == 0 and symbol=='USDT':
-                 # Place limit order buy
+                 # Place limit order sell
                  bid , ask = get_bid_ask()
                  mid_price = round((bid + ask) / 2,0)
-                 limit_order = place_limit_order(pair='BTCUSDT', side='sell', price=mid_price, size=0.0001)
+                 limit_order = place_limit_order(pair='BTCUSDT', side='sell', price=mid_price, size=trade_qty)
+                 open_orders.append(limit_order)
+                 print("Added order to open_orders")
                  
                  # SWITCH TO ACCUMULATING IF BTC TOTAL BALANCE IS EQUAL TO ZERO
     
     # HANDLE ORDER_STATUS_UPDATE
-    # Enter Short Futures Position if Spot Order is Filled.
     if msg['type'] == 'ORDER_STATUS_UPDATE':
         data = msg.get('data',{})
         print(f'{data["orderUpdatedAt"]} | Order {data["orderStatusType"]}: buy {data["originalQuantity"]} {data["currencyPair"]} at {data["executedPrice"]}.')
@@ -232,15 +244,15 @@ def handle_message(msg_raw):
             
     # Close Short Futures Position        
         if data.get('orderStatusType','') == 'Filled' and data.get('currencyPair','') == 'BTCUSDT' and data.get('orderSide','') == 'sell':
-            # Place short futures position of similar size
+            # Place long futures position of similar size (i.e. close short position)
             order = post_market_order(pair='BTCUSDTPERP', side='buy', size=data['originalQuantity'])
     
     print('-'*55)
             
         
 usdt_avail_bal = 0
-trade_amt = 9 #TODO: This is a hardcoded trade amount and will need to be updated to a real time one.
-trade_qty = 0.0001
+trade_qty = 0.0003
+trade_amt = trade_qty * 100000  #TODO: This is a hardcoded trade amount and will need to be updated to a real time one.
 async def stream_valr_account():
     
     
@@ -253,6 +265,7 @@ async def stream_valr_account():
     while True:
         try:
             async with websockets.connect(WSS_URL, extra_headers=get_valr_headers(API_KEY, API_SECRET)) as ws:
+            #async with websockets.connect(WSS_URL, additional_headers=get_valr_headers(API_KEY, API_SECRET)) as ws:
                 print('Websocket Connection Established!')
                 
                 # Start periodic task in background
@@ -269,7 +282,7 @@ async def stream_valr_account():
                             # Place limit order buy
                             bid , ask = get_bid_ask()
                             mid_price = round((bid + ask) / 2,0)
-                            limit_order = place_limit_order(pair='BTCUSDT', side='buy', price=mid_price, size=0.0001)
+                            limit_order = place_limit_order(pair='BTCUSDT', side='buy', price=mid_price, size=trade_qty)
                             
                     #print('DEBUG | Sleeping for 0.2 seconds ...')       
                     # await asyncio.sleep(1)
@@ -299,11 +312,11 @@ if __name__ == '__main__':
 if False:
     bid = get_bid_ask()[0]
     ask = get_bid_ask()[1]
-    order = place_limit_order(pair='BTCUSDT', side='buy', price=bid, size=0.0001)
+    order = place_limit_order(pair='BTCUSDT', side='buy', price=bid, size=0.0003)
     
     # Sell off some BTC
     ask = get_bid_ask()[1]
-    order = place_limit_order(pair='BTCUSDT', side='sell', price=ask, size=0.0001)
+    order = place_limit_order(pair='BTCUSDT', side='sell', price=ask, size=0.0003)
     
 if False:
     spot_trades = pd.DataFrame(valrClient.get_trade_history('BTCUSDT'))
