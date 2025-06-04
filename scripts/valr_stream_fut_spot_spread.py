@@ -4,6 +4,7 @@
 
 #%% LIBRARIES
 import pandas as pd
+import numpy as np
 import math
 import time
 import json
@@ -17,6 +18,7 @@ from valr_python import Client
 from valr_python.exceptions import IncompleteOrderWarning, RESTAPIException
 from decimal import Decimal
 import aiofiles
+from collections import deque
 
 #%% INPUTS
 WSS_URL = 'wss://api.valr.com/ws/trade'
@@ -29,6 +31,10 @@ async def handle_message(msg_raw):
     global fut_bid
     global fut_ask
     global spread
+    global sec_key
+    global latest_values
+    global last_spread
+    global avg_spread
     
     msg = json.loads(msg_raw)
     
@@ -46,7 +52,22 @@ async def handle_message(msg_raw):
         try:
             spread = fut_bid / spot_bid - 1
             # print spread only when it changes.
-            print(f'{dt} | Spread {round(spread*100,4)}%')
+            print(f'{dt} | Spread: {round(spread*100,4)}%  Avg: {round(avg_spread*100,4)}')
+            
+            t = dt.floor('S')
+            
+            if sec_key is None:
+                sec_key = t
+            
+            if sec_key != t:
+                latest_values.append(last_spread)
+                sec_key = t
+            
+            last_spread = spread
+            
+            avg_spread = np.mean(latest_values)
+            
+            
             
             data = {'datetime':str(dt), 'pair':pair, 'bid':bid, 'ask':ask}
             async with aiofiles.open(f'data/valr/{PAIR.lower()}_fut_spot_spread_{dt.strftime("%Y%m%d")}.txt', mode='a') as f:
@@ -99,6 +120,11 @@ async def stream_trade(url='wss://api.valr.com/ws/trade'):
 #%% MAIN
 
 if __name__ == '__main__':
+    latest_values = deque(maxlen=86400)
+    sec_key = None
+    last_spread = None
+    avg_spread = 0
+    
     try:
         asyncio.run(stream_trade())
     except KeyboardInterrupt:
